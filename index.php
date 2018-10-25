@@ -41,9 +41,11 @@ $mysql = createMysqlConnection();
 <p><div class="container">
     <h3 align="center">Alle Einträge
         <?php
-            $filter = $_GET["author"];
-            if($filter !== null && $filter !== "null") {
-                echo 'von ' . $filter;
+            if(isset($_GET["author"])) {
+                $filter = $_GET["author"];
+                if ($filter !== null && $filter !== "null") {
+                    echo 'von ' . $filter;
+                }
             }
         ?>
     </h3>
@@ -53,7 +55,7 @@ $mysql = createMysqlConnection();
     <div class="row">
         <div class="col">
 <!-- author selection -->
-<div class="container d-flex justify-content-start">
+<div class="d-flex justify-content-start">
     <form class="form-group" method="get">
         <div class="input-group mb-2">
         <div class="input-group-prepend">
@@ -77,7 +79,7 @@ $mysql = createMysqlConnection();
         </div>
         <div class="col-6">
 <!-- Pagination -->
-<div class="container d-flex justify-content-end">
+<div class="d-flex justify-content-end">
 <nav aria-label="Page navigation example">
     <ul class="pagination" >
         <?php
@@ -119,9 +121,12 @@ if(!isset($_GET['limit'])) {
     $page = $_GET['page'];
     $start = ($page - 1) * $limit;
 }
-if($filter == "null" || $filter == null) {
-    $myquery = $mysql->prepare("SELECT * FROM BlogEntries ORDER BY dateofentry DESC LIMIT ? OFFSET ?");
-    $myquery->bind_param("ss", $limit, $start);
+if(!isset($_GET['author'])){
+    $filter= "null";
+}
+if ($filter == null || $filter == "null") {
+        $myquery = $mysql->prepare("SELECT * FROM BlogEntries ORDER BY dateofentry DESC LIMIT ? OFFSET ?");
+        $myquery->bind_param("ss", $limit, $start);
 } else {
     $myquery = $mysql->prepare("SELECT * FROM BlogEntries WHERE author = ? ORDER BY dateofentry DESC LIMIT ? OFFSET ?");
     $myquery->bind_param("sss", $_GET['author'], $limit, $start);
@@ -139,7 +144,7 @@ $filteredresult = $myquery->get_result();
 <?php
     if($filteredresult->num_rows>0){
         while($rows = $filteredresult->fetch_assoc()){
-            echo '<li class="list-group-item"><h5>' . $rows["blogtitle"] . '</h5><p>' . nl2br($rows["blogcontent"]) . '</p>' . $rows["dateofentry"] . ' von <i>' . $rows["author"] . '</i></li>';
+            echo '<li class="list-group-item"><h5><b>' . $rows["blogtitle"] . '</b></h5><p>' . nl2br($rows["blogcontent"]) . '</p>' . $rows["dateofentry"] . ' von <i>' . $rows["author"] . '</i></li>';
         }
     }
 ?>
