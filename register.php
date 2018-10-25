@@ -20,14 +20,14 @@ $mysql = createMysqlConnection();
     <nav class="navbar navbar-expand navbar-dark bg-dark">
         <span class="navbar-brand mb-0 h1">Navigation</span>
         <div class="navbar-nav" id="navbarNav">
-            <a class="nav-item nav-link active" href="index.php">Startseite</a>
+            <a class="nav-item nav-link" href="index.php">Startseite</a>
             <?php
             if(isset($_SESSION['username'])) {
                 echo '<a class="nav-item nav-link" href="author.php">Eintrag verfassen</a>';
                 echo '<a class="nav-item nav-link" href="editor.php">Eintrag bearbeiten</a>';
             }
             if(!isset($_SESSION['username'])){
-                echo '<a class="nav-item nav-link" href="login.php">Login</a>';
+                echo '<a class="nav-item nav-link active" href="login.php">Login</a>';
             } else {
                 echo '<a class="nav-item nav-link" href="logout.php">Logout</a>';
             }
