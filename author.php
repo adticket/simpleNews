@@ -40,25 +40,21 @@ $user = $_SESSION['username'];
 sessionValidation();
 ?>
 
-<div class="container">
-    <p><h1>Hallo <?php echo $user ?>!</h1></p>
-</div>
-
-<div class="container">
+<p><div class="container">
     <form method="post" action="addentry.php">
         <div class="form-group">
-            <label for="entrytitle">Schlagzeile</label>
+            <label for="entrytitle"><h5>Schlagzeile</h5></label>
             <input type="text" class="form-control" id="entrytitle" name="entrytitle" size="50" required>
         </div>
         <div class="form-group">
-            <label for="content">Artikel</label>
+            <label for="content"><h5>Artikel</h5></label>
             <textarea type="comment" name="blogcontent" class="form-control" id="content" cols="50" rows="7" required></textarea>
         </div>
         <div class="form-group">
             <input type="submit" value="Eintrag erstellen" class="btn btn-primary">
         </div>
     </form>
-</div>
+</div></p>
 
 </body>
 </html>

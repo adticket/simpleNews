@@ -50,14 +50,16 @@ $allresults = $myquery->get_result();
 sessionValidation();
 ?>
 
-<div class="container">
-    <p><h1>Hallo <?php echo $_SESSION['username'] ?>!</h1></p>
-</div>
-
+<p><div class="container">
+    <div class="row">
+        <div class="col align-self-center">
+            <h5>Anzahl deiner Einträge: <?php echo $allresults->num_rows ?></h5>
+        </div>
+        <div class="col">
 <!-- Pagination -->
-<div class="container">
+<div class="d-flex justify-content-end">
     <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
+        <ul class="pagination">
             <?php
             if($allresults->num_rows>10){
                 $num_pages = $allresults->num_rows/10;
@@ -72,6 +74,9 @@ sessionValidation();
         </ul>
     </nav>
 </div>
+        </div>
+    </div>
+</div></p>
 
 <div class="container">
         <?php
@@ -91,7 +96,7 @@ sessionValidation();
         $entries = $myquery->get_result();
 
         if($entries->num_rows > 0){
-            echo "<h5>Anzahl deiner Einträge: " . $allresults->num_rows . "</h5>";
+            #echo "<h5>Anzahl deiner Einträge: " . $allresults->num_rows . "</h5>";
 
             while($entry = $entries->fetch_assoc()){
                 echo    '<form method="post" action="editpage.php">
