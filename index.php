@@ -16,6 +16,7 @@ $mysql = createMysqlConnection();
 </head>
 <body>
 
+<!-- Navigation -->
 <div class="container">
     <nav class="navbar navbar-expand navbar-dark bg-dark">
         <span class="navbar-brand mb-0 h1">Navigation</span>
@@ -36,10 +37,9 @@ $mysql = createMysqlConnection();
     </nav>
 </div>
 
-<p></p>
-
-<div class="container">
-    <h3>Alle Einträge
+<!-- which entries are shown -->
+<p><div class="container">
+    <h3 align="center">Alle Einträge
         <?php
             $filter = $_GET["author"];
             if($filter !== null && $filter !== "null") {
@@ -47,14 +47,15 @@ $mysql = createMysqlConnection();
             }
         ?>
     </h3>
-</div>
-
-<p></p>
-
+</div></p>
 
 <div class="container">
+    <div class="row">
+        <div class="col">
+<!-- author selection -->
+<div class="container d-flex justify-content-start">
     <form class="form-group" method="get">
-        <div class="input-group mb-3">
+        <div class="input-group mb-2">
         <div class="input-group-prepend">
             <input class="btn btn-primary" type="submit" value="Filtern">
         </div>
@@ -73,13 +74,12 @@ $mysql = createMysqlConnection();
         </div>
     </form>
 </div>
-
-<p></p>
-
+        </div>
+        <div class="col-6">
 <!-- Pagination -->
-<div class="container">
+<div class="container d-flex justify-content-end">
 <nav aria-label="Page navigation example">
-    <ul class="pagination">
+    <ul class="pagination" >
         <?php
             if(isset($_GET['author']) && $_GET['author'] != 'null')
             {
@@ -109,7 +109,6 @@ $mysql = createMysqlConnection();
     </ul>
 </nav>
 </div>
-
 <?php
 if(!isset($_GET['limit'])) {
     $limit = 10;
@@ -130,17 +129,21 @@ if($filter == "null" || $filter == null) {
 $myquery->execute();
 $filteredresult = $myquery->get_result();
 ?>
+        </div>
+    </div>
+</div>
 
 <!--Show filtered results-->
 <div class="container">
+    <ul class="list-group">
 <?php
     if($filteredresult->num_rows>0){
         while($rows = $filteredresult->fetch_assoc()){
-            echo '<div class="form-group"><b>' . $rows["blogtitle"] . '</b><br><p><normal>' . nl2br($rows["blogcontent"]). '</normal><br>' . $rows["dateofentry"] . "\tvon " . '<i>' . $rows["author"] . '</i></p></div>';
-            printf("", $rows['blogcontent']);
+            echo '<li class="list-group-item"><h5>' . $rows["blogtitle"] . '</h5><p>' . nl2br($rows["blogcontent"]) . '</p>' . $rows["dateofentry"] . ' von <i>' . $rows["author"] . '</i></li>';
         }
     }
 ?>
+    </ul>
 </div>
 
 
