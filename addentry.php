@@ -19,6 +19,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $mysql->close();
 
-header('Location: author.php');
+header('Location: editor.php');
 exit();
 ?>
