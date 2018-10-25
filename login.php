@@ -76,7 +76,7 @@ if(isset($_GET['login'])){
 
 <?php
 if(!isset($_SESSION['userid'])) {
-    ?>
+    echo '
     <div class="container">
         <form action="?login=1" method="post">
             <div class="form-group">
@@ -91,18 +91,17 @@ if(!isset($_SESSION['userid'])) {
                 <input type="submit" value="Login">
             </div>
         </form>
-    </div>
-    <?php
+    </div>';
 }
 
+
 if(!isset($_SESSION['username'])){
+    echo '
+        <form class="container" action="register.php">
+            <button type="submit" class="form-group">Registrieren</button>
+        </form>';
+}
 ?>
-
-<form class="container" action="register.php">
-    <button type="submit" class="form-group">Registrieren</button>
-</form>
-
-<?php } ?>
 
 </body>
 </html>

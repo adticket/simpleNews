@@ -20,14 +20,14 @@ $mysql = createMysqlConnection();
     <nav class="navbar navbar-expand navbar-dark bg-dark">
         <span class="navbar-brand mb-0 h1">Navigation</span>
         <div class="navbar-nav" id="navbarNav">
-            <a class="nav-item nav-link active" href="index.php">Startseite</a>
+            <a class="nav-item nav-link" href="index.php">Startseite</a>
             <?php
             if(isset($_SESSION['username'])) {
                 echo '<a class="nav-item nav-link" href="author.php">Eintrag verfassen</a>';
                 echo '<a class="nav-item nav-link" href="editor.php">Eintrag bearbeiten</a>';
             }
             if(!isset($_SESSION['username'])){
-                echo '<a class="nav-item nav-link" href="login.php">Login</a>';
+                echo '<a class="nav-item nav-link active" href="login.php">Login</a>';
             } else {
                 echo '<a class="nav-item nav-link" href="logout.php">Logout</a>';
             }
@@ -79,7 +79,6 @@ if(isset($_GET['register'])) {
     }
 
     if(!$inputerror) {
-        #echo '<div class="container">Alles richtig eingegeben</div>';
         $myquery = $mysql->prepare('SELECT * FROM users WHERE username = ?');
         $myquery->bind_param("s", $username);
         $result = $myquery->execute();
@@ -93,8 +92,6 @@ if(isset($_GET['register'])) {
     }
 
     if(!$inputerror){
-        #echo '<div class="container">Yay, keine Fehler soweit.</div>';
-
         $userpasswordHash = password_hash($userpassword, PASSWORD_DEFAULT);
 
         $sql = "INSERT INTO users (email, password, firstname, surname, username) VALUES ('$email', '$userpasswordHash', '$firstname', '$surname', '$username')";

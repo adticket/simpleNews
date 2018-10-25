@@ -7,10 +7,9 @@ session_start();
 
 $mysql = createMysqlConnection();
 
-$user= $_SESSION['username'];
 
 $myquery = $mysql->prepare("SELECT * FROM BlogEntries WHERE author = ? ORDER BY dateofentry DESC");
-$myquery->bind_param("s", $user);
+$myquery->bind_param("s", $_SESSION['username']);
 $result = $myquery->execute();
 $allresults = $myquery->get_result();
 ?>
@@ -52,7 +51,7 @@ sessionValidation();
 ?>
 
 <div class="container">
-    <p><h1>Hallo <?php echo $user ?>!</h1></p>
+    <p><h1>Hallo <?php echo $_SESSION['username'] ?>!</h1></p>
 </div>
 
 <!-- Pagination -->
@@ -87,7 +86,7 @@ sessionValidation();
         }
 
         $myquery = $mysql->prepare("SELECT * FROM BlogEntries WHERE author = ? ORDER BY dateofentry DESC LIMIT ? OFFSET ?");
-        $myquery->bind_param("sss", $user, $limit, $start);
+        $myquery->bind_param("sss", $_SESSION['username'], $limit, $start);
         $result = $myquery->execute();
         $entries = $myquery->get_result();
 
