@@ -79,7 +79,6 @@ if(isset($_GET['register'])) {
     }
 
     if(!$inputerror) {
-        #echo '<div class="container">Alles richtig eingegeben</div>';
         $myquery = $mysql->prepare('SELECT * FROM users WHERE username = ?');
         $myquery->bind_param("s", $username);
         $result = $myquery->execute();
@@ -93,8 +92,6 @@ if(isset($_GET['register'])) {
     }
 
     if(!$inputerror){
-        #echo '<div class="container">Yay, keine Fehler soweit.</div>';
-
         $userpasswordHash = password_hash($userpassword, PASSWORD_DEFAULT);
 
         $sql = "INSERT INTO users (email, password, firstname, surname, username) VALUES ('$email', '$userpasswordHash', '$firstname', '$surname', '$username')";
