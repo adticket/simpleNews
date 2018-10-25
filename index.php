@@ -54,20 +54,23 @@ $mysql = createMysqlConnection();
 
 <div class="container">
     <form class="form-group" method="get">
-        <label for="author"></label>
-        <select name="author" id="author">
-            <option value="null">Alle Autoren</option>
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <input class="btn btn-primary" type="submit" value="Filtern">
+        </div>
+        <select class="costum-select" name="author" id="author" aria-labelledby="Example select with button addon">
+            <option class="dropdown-item" value="null">Alle Autoren</option>
             <?php
                 $myquery = "SELECT DISTINCT author FROM BlogEntries";
                 $result = $mysql->query($myquery);
                 if($result->num_rows > 0){
                     while($author = $result->fetch_assoc()){ ?>
-                    <option value="<?php echo $author['author'] ?>"><?php echo $author['author'] ?></option><?php
+                    <option class="dropdown-item" value="<?php echo $author['author'] ?>"><?php echo $author['author'] ?></option><?php
                     }
                 }
             ?>
         </select>
-        <input type="submit" value="Filtern">
+        </div>
     </form>
 </div>
 

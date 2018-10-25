@@ -102,7 +102,7 @@ sessionValidation();
                                 <textarea type="comment" name="blogcontent" class="form-control" id="content" cols="50" rows="7" required readonly>' . $entry["blogcontent"] . '</textarea>
                             </div>
                             <div class="form-group">
-                                <input type="submit" name="action" value="Eintrag bearbeiten">
+                                <input type="submit" class="btn btn-primary" name="action" value="Eintrag bearbeiten">
                             </div>
                             <input type="hidden" name="entryID" value="' . $entry["entryID"] .'">
                         </form>';
