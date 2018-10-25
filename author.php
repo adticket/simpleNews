@@ -43,11 +43,11 @@ sessionValidation();
 <p><div class="container">
     <form method="post" action="addentry.php">
         <div class="form-group">
-            <label for="entrytitle"><b>Schlagzeile</b></label>
+            <label for="entrytitle"><h5>Schlagzeile</h5></label>
             <input type="text" class="form-control" id="entrytitle" name="entrytitle" size="50" required>
         </div>
         <div class="form-group">
-            <label for="content"><b>Artikel</b></label>
+            <label for="content"><h5>Artikel</h5></label>
             <textarea type="comment" name="blogcontent" class="form-control" id="content" cols="50" rows="7" required></textarea>
         </div>
         <div class="form-group">
