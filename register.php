@@ -7,7 +7,7 @@ session_start();
 $mysql = createMysqlConnection();
 
 ?>
-
+<!--
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +36,7 @@ $mysql = createMysqlConnection();
     </nav>
 </div>
 <p></p>
-
+-->
 <?php
 
 if(isset($_GET['register'])) {
@@ -64,7 +64,6 @@ if(isset($_GET['register'])) {
     }
 
     if(!$inputerror) {
-        #echo '<div class="container">Alles richtig eingegeben</div>';
         $myquery = $mysql->prepare('SELECT * FROM users WHERE email = ?');
         $myquery->bind_param("s", $email);
         $result = $myquery->execute();
@@ -104,7 +103,7 @@ if(isset($_GET['register'])) {
     }
 }
 ?>
-
+<!--
 <div class="container">
     <form action="?register=1" method="post">
         <div class="form-group">
@@ -139,3 +138,4 @@ if(isset($_GET['register'])) {
 
 </body>
 </html>
+-->
