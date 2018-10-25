@@ -63,9 +63,9 @@ echo '
                 <textarea type="comment" name="blogcontent" class="form-control" id="content" cols="50" rows="7" required>' . $entry["blogcontent"] . '</textarea>
             </div>
             <div class="form-group">
-                <input type="submit" name="action" value="Änderung speichern">
-                <input type="submit" name="action" value="Änderung verwerfen">
-                <input type="submit" name="action" value="Eintrag löschen">
+                <input type="submit" class="btn btn-primary" name="action" value="Änderung speichern">
+                <input type="submit" class="btn btn-secondary" name="action" value="Änderung verwerfen">
+                <input type="submit" class="btn btn-danger" name="action" value="Eintrag löschen">
             </div>
             <input type="hidden" name="entryID" value="' . $entry["entryID"] .'">
         </form>

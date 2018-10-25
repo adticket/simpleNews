@@ -88,20 +88,22 @@ if(!isset($_SESSION['userid'])) {
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <div class="form-group">
-                <input type="submit" value="Login">
+                <input class="btn btn-primary" type="submit" value="Login">
+                <input type="button" class="btn btn-secondary" value="Registrieren">
             </div>
         </form>
     </div>';
 }
 
-
+/*
 if(!isset($_SESSION['username'])){
     echo '
         <form class="container" action="register.php">
-            <button type="submit" class="form-group">Registrieren</button>
+            <button type="submit" class="form-group btn btn-secondary">Registrieren</button>
         </form>';
-}
+} */
 ?>
+
 
 </body>
 </html>
