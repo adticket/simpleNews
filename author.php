@@ -4,7 +4,6 @@ include "sessionvalidation.php";
 
 session_start();
 
-$user= $_SESSION['username'];
 
 ?>
 
@@ -41,7 +40,7 @@ sessionValidation();
 ?>
 
 <div class="container">
-    <p><h1>Hallo <?php echo $user ?>!</h1></p>
+    <p><h1>Hallo <?php echo $_POST['username'] ?>!</h1></p>
 </div>
 
 <div class="container">
