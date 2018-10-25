@@ -30,7 +30,7 @@ if(isset($_GET['login'])){
     if($user != 0 && password_verify($password, $user["password"])) {
         $_SESSION['userid'] = $user['userID'];
         $_SESSION['username']=$user['username'];
-        $errorMessage = "Login erfolgreich!";
+        $errorMessage = "<p><div class='container d-flex justify-content-center'><h3>Herzlich Willkommen, " . $user['username'] . "!</h3></div></p>";
     } else {
         $errorMessage = "Nutzername oder Passwort inkorrekt!";
     }
@@ -89,7 +89,7 @@ if(!isset($_SESSION['userid'])) {
             </div>
             <div class="form-group">
                 <input class="btn btn-primary" type="submit" value="Login">
-                <input type="button" class="btn btn-secondary" value="Registrieren">
+                <input type="button" class="btn btn-secondary" style="float: right" value="Registrieren">
             </div>
         </form>
     </div>';
