@@ -91,8 +91,36 @@ $mysql = createMysqlConnection();
                     if ($entries->num_rows % 10 > 0) {
                         $num_pages++;
                     }
+
+                    if($_GET['page']==1 || !isset($_GET['page'])){
+                        echo "<li class='page-item disabled'><a class='page-link' aria-label='Previous' href='?author=" . $_GET['author'] . "&limit=10&page=" . $_GET['page'] . "'>
+                                    <span aria-hidden='true'>&laquo;</span>
+                                    <span class='sr-only'>Previous</span></a>";
+                    } else {
+                        $pagelink= $_GET['page']-1;
+                        echo "<li class='page-item'><a class='page-link' aria-label='Previous' href='?author=" . $_GET['author'] . "&limit=10&page=" . $pagelink . "'>
+                                    <span aria-hidden='true'>&laquo;</span>
+                                    <span class='sr-only'>Previous</span></a>";
+                    }
+
                     for ($i = 1; $i <= $num_pages; $i++) {
                         echo "<li class='page-item'><a class='page-link' href='?author=" . $_GET['author'] . "&limit=10&page=" . $i . "'>$i</a>";
+                    }
+
+                    if(!isset($_GET['page'])) {
+                        $pagelink= 2;
+                            echo "<li class='page-item'><a class='page-link' aria-label='Previous' href='?author=" . $_GET['author'] . "&limit=10&page=" . $pagelink . "'>
+                                    <span aria-hidden='true'>&raquo;</span>
+                                    <span class='sr-only'>Previous</span></a>";
+                    } elseif($_GET['page']<$num_pages-1) {
+                            $pagelink= $_GET['page']+1;
+                            echo "<li class='page-item'><a class='page-link' aria-label='Previous' href='?author=" . $_GET['author'] . "&limit=10&page=" . $pagelink . "'>
+                                    <span aria-hidden='true'>&raquo;</span>
+                                    <span class='sr-only'>Previous</span></a>";
+                    } else {
+                        echo "<li class='page-item disabled'><a class='page-link' aria-label='Previous' href='?author=" . $_GET['author'] . "&limit=10&page=" . $_GET['page'] . "'>
+                                <span aria-hidden='true'>&raquo;</span>
+                                <span class='sr-only'>Next</span></a>";
                     }
                 }
             } else {
@@ -102,9 +130,38 @@ $mysql = createMysqlConnection();
                     if ($entries->num_rows % 10 > 0) {
                         $num_pages++;
                     }
+
+                    if(!isset($_GET['page']) || $_GET['page']==1){
+                        echo "<li class='page-item disabled'><a class='page-link' aria-label='Previous' href='?limit=10&page=" . 1 . "'>
+                                    <span aria-hidden='true'>&laquo;</span>
+                                    <span class='sr-only'>Previous</span></a>";
+                    } else {
+                        $pagelink= $_GET['page']-1;
+                        echo "<li class='page-item'><a class='page-link' aria-label='Previous' href='?limit=10&page=" . $pagelink . "'>
+                                    <span aria-hidden='true'>&laquo;</span>
+                                    <span class='sr-only'>Previous</span></a>";
+                    }
+
                     for ($i = 1; $i <= $num_pages; $i++) {
                         echo "<li class='page-item'><a class='page-link' href='?limit=10&page=" . $i . "'>$i</a>";
                     }
+
+                    if(!isset($_GET['page'])) {
+                        $pagelink= 2;
+                        echo "<li class='page-item'><a class='page-link' aria-label='Previous' href='?limit=10&page=" . $pagelink . "'>
+                                    <span aria-hidden='true'>&raquo;</span>
+                                    <span class='sr-only'>Previous</span></a>";
+                    } elseif($_GET['page']<$num_pages-1) {
+                        $pagelink= $_GET['page']+1;
+                        echo "<li class='page-item'><a class='page-link' aria-label='Previous' href='?limit=10&page=" . $pagelink . "'>
+                                    <span aria-hidden='true'>&raquo;</span>
+                                    <span class='sr-only'>Previous</span></a>";
+                    } else {
+                        echo "<li class='page-item disabled'><a class='page-link' aria-label='Previous' href='?limit=10&page=" . $_GET['page'] . "'>
+                                <span aria-hidden='true'>&raquo;</span>
+                                <span class='sr-only'>Next</span></a>";
+                    }
+
                 }
             }
         ?>
