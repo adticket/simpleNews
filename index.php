@@ -92,8 +92,8 @@ $mysql = createMysqlConnection();
                         $num_pages++;
                     }
 
-                    if($_GET['page']==1 || !isset($_GET['page'])){
-                        echo "<li class='page-item disabled'><a class='page-link' aria-label='Previous' href='?author=" . $_GET['author'] . "&limit=10&page=" . $_GET['page'] . "'>
+                    if(!isset($_GET['page']) || $_GET['page']==1){
+                        echo "<li class='page-item disabled'><a class='page-link' aria-label='Previous' href='?author=" . $_GET['author'] . "&limit=10&page=" . 1 . "'>
                                     <span aria-hidden='true'>&laquo;</span>
                                     <span class='sr-only'>Previous</span></a>";
                     } else {
