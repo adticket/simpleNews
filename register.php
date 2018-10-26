@@ -5,13 +5,12 @@ include "mysqlFunctions.php";
 session_start();
 
 $mysql = createMysqlConnection();
-
 ?>
-<!--
+
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Registrieren</title>
+    <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <meta charset="UTF-8">
 </head>
@@ -29,16 +28,16 @@ $mysql = createMysqlConnection();
             if(!isset($_SESSION['username'])){
                 echo '<a class="nav-item nav-link active" href="login.php">Login</a>';
             } else {
-                echo '<a class="nav-item nav-link" href="logout.php">Logout</a>';
+                echo '<a class="nav-item nav-link active" href="logout.php">Logout</a>';
             }
             ?>
         </div>
     </nav>
 </div>
 <p></p>
--->
-<?php
 
+
+<?php
 if(isset($_GET['register'])) {
     $inputerror = false;
     $email = $_POST['email'];
@@ -50,16 +49,19 @@ if(isset($_GET['register'])) {
 
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
         echo '<div class="container">Ungültige E-Mail-Adresse!</div>';
+        echo "<div class='container'>Bitte versuchen Sie es erneut!</div><div class='container'>Zurück zum <a href='login.php'>Login</a></div>";
         $inputerror = true;
     }
 
     if(strlen($userpassword) == 0){
         echo '<div class="container">Bitte Passwort eingeben!</div>';
+        echo "<div class='container'>Bitte versuchen Sie es erneut!</div><div class='container'>Zurück zum <a href='login.php'>Login</a></div>";
         $inputerror = true;
     }
 
     if($userpassword != $userpasswordRepeat){
         echo '<div class="container">Passwörter stimmen nicht überein!</div>';
+        echo "<div class='container'>Bitte versuchen Sie es erneut!</div><div class='container'>Zurück zum <a href='login.php'>Login</a></div>";
         $inputerror = true;
     }
 
@@ -73,6 +75,7 @@ if(isset($_GET['register'])) {
 
         if ($existinguser != 0) {
             echo '<div class="container">Zu dieser E-Mail-Adresse existiert bereits ein Account!</div>';
+            echo "<div class='container'>Bitte versuchen Sie es erneut!</div><div class='container'>Zurück zum <a href='login.php'>Login</a></div>";
             $inputerror = true;
         }
     }
@@ -96,46 +99,14 @@ if(isset($_GET['register'])) {
         $sql = "INSERT INTO users (email, password, firstname, surname, username) VALUES ('$email', '$userpasswordHash', '$firstname', '$surname', '$username')";
 
         if(mysqli_query($mysql, $sql)) {
-            echo "<div class=\"container\">Erfolgreich registriert!</div>";
+            echo "<div class='container'>Erfolgreich registriert!</div><div class='container'>Weiter zum <a href='login.php'>Login</a></div>";
         } else {
             echo "<div class=\"container\">Bei der Registrierung ist ein Fehler aufgetreten: <br>" . mysqli_error($mysql) . "</div>";
         }
     }
 }
+
 ?>
-<!--
-<div class="container">
-    <form action="?register=1" method="post">
-        <div class="form-group">
-            <label for="firstname">Firstname</label>
-            <input type="text" class="form-control" id="firstname" name="firstname" required>
-        </div>
-        <div class="form-group">
-            <label for="surname">Surname</label>
-            <input type="text" class="form-control" id="surname" name="surname" required>
-        </div>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" name="username" required>
-        </div>
-        <div class="form-group">
-            <label for='email'>E-Mail:</label>
-            <input type="text" class="form-control" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-            <label for="userpassword">Passwort:</label>
-            <input type="password" class="form-control" id="userpassword" name="userpassword" size="20" required>
-        </div>
-        <div class="form-group">
-            <label for="userpasswordRepeat">Passwort:</label>
-            <input type="password" class="form-control" id="userpasswordRepeat" name="userpasswordRepeat" size="20" required>
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Registrieren">
-        </div>
-    </form>
-</div>
 
 </body>
 </html>
--->

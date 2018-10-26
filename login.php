@@ -89,7 +89,7 @@ if(!isset($_SESSION['userid'])) {
             </div>
             <div class="form-group">
                 <input class="btn btn-primary" type="submit" value="Login">
-                <input type="button" class="btn btn-secondary" style="float: right" value="Registrieren">
+                <input type="button" class="btn btn-secondary" style="float: right" value="Registrieren" id="register">
             </div>
         </form>
     </div>';
@@ -104,6 +104,82 @@ if(!isset($_SESSION['username'])){
 } */
 ?>
 
+<!-- registerform-Modal -->
+<div class="modal" id="registermodal" role="diaglog" aria-hidden="true" tabindex="-1" style="overflow: auto">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Registrieren</h5>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form action="register.php?register=1" method="post">
+                    <div class="form-group">
+                        <label for="firstname">Vorname</label>
+                        <input type="text" class="form-control" id="firstname" name="firstname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="surname">Nachname</label>
+                        <input type="text" class="form-control" id="surname" name="surname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Benutzername</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for='email'>E-Mail</label>
+                        <input type="email" class="form-control validate" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userpassword">Passwort</label>
+                        <input type="password" class="form-control" id="userpassword" name="userpassword" size="20" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userpasswordRepeat">Passwort</label>
+                        <input type="password" class="form-control" id="userpasswordRepeat" name="userpasswordRepeat" size="20" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" value="Registrieren">
+                        <input type="button" class="close btn btn-danger" value="Abbruch" style="float: right">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
+
+
+<script>
+    // Get the modal
+    var modal = document.getElementById('registermodal');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("register");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    var span1 = document.getElementsByClassName("close btn btn-danger")[0];
+
+    // When the user clicks on the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+    span1.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
