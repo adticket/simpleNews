@@ -14,3 +14,9 @@ function e($string)
 }
 
 $container = new App\Core\Container();
+
+$ur = $container->make("userRepository");
+
+var_dump($ur->);
+
+die;

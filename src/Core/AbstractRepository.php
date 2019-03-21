@@ -31,26 +31,4 @@ abstract class AbstractRepository
 
         return $entries;
     }
-
-    function allSortedByDate()
-    {
-        $table = $this->getTableName();
-        $model = $this->getModelName();
-        $stmt = $this->pdo->query("SELECT * FROM {$table} ORDER BY dateofentry DESC");
-        $entries = $stmt->fetchAll(PDO::FETCH_CLASS, $model);
-
-        return $entries;
-    }
-
-    function find($id)
-    {
-        $table = $this->getTableName();
-        $model = $this->getModelName();
-        $stmt = $this->pdo->prepare("SELECT * FROM {$table} WHERE entryID = :eid");
-        $stmt->execute(['eid' => $id]);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, $model);
-        $entry = $stmt->fetch(8);
-
-        return $entry;
-    }
 }

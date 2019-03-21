@@ -9,9 +9,11 @@
 namespace App\Core;
 
 use App\Entry\EntryController;
+use App\User\UserRepository;
 use PDO;
 use App\Entry\EntryRepository;
 use PDOException;
+
 
 class Container
 {
@@ -44,6 +46,10 @@ class Container
             'entryController' => function()
             {
                 return new EntryController($this->make('entryRepository'));
+            },
+            'userRepository' => function()
+            {
+                return new UserRepository($this->make('pdo'));
             }
         ];
 
