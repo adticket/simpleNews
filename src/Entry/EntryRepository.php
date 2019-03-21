@@ -9,6 +9,7 @@
 namespace App\Entry;
 
 use App\Core\AbstractRepository;
+use PDO;
 
 class EntryRepository extends AbstractRepository
 {

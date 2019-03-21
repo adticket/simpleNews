@@ -20,7 +20,7 @@ class UserRepository extends AbstractRepository
 
     public function getModelName()
     {
-        return 'App\\User\\UserRepository';
+        return 'App\\User\\UserModel';
     }
 
     public function findByUsername($username)
