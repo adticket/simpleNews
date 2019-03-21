@@ -14,5 +14,10 @@ use App\Core\AbstractModel;
 
 class UserModel extends AbstractModel
 {
-
+    public $userID;
+    public $username;
+    public $password;
+    public $firstname;
+    public $surname;
+    public $email;
 }
