@@ -9,6 +9,7 @@
 namespace App\Core;
 
 use App\Entry\EntryController;
+use App\User\UserController;
 use App\User\UserRepository;
 use PDO;
 use App\Entry\EntryRepository;
@@ -50,6 +51,10 @@ class Container
             'userRepository' => function()
             {
                 return new UserRepository($this->make('pdo'));
+            },
+            'userController' => function()
+            {
+                return new UserController($this->make('userRepository'));
             }
         ];
 

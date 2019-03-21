@@ -8,10 +8,13 @@
 
 <div class="container">
     <nav class="navbar navbar-expand navbar-dark bg-dark">
-        <span class="navbar-brand mb-0 h1">PP-1.1</span>
+        <div class="navbar-header">
+            <span class="navbar-brand mb-0 h1">PP-1.1</span>
+        </div>
         <div class="navbar-nav" id="navbarNav">
             <a class="nav-item nav-link" href="index">Startseite</a>
             <a class="nav-item nav-link" href="addEntry">Eintragen</a>
+            <a class="nav-item nav-link" href="login">Login</a>
         </div>
     </nav>
 </div>

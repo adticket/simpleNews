@@ -22,6 +22,14 @@ $routes = [
     '/addEntry' => [
         'controller' => 'entryController',
         'method' => 'addEntry'
+    ],
+    '/login' => [
+        'controller' => 'userController',
+        'method' => 'login'
+    ],
+    '/register' => [
+        'controller' => 'userController',
+        'method' => 'register'
     ]
 ];
 
