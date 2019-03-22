@@ -101,9 +101,10 @@ class LoginService
                 $errors[] = "Username bereits verwendet";
             }
 
-            if(!isset($errors)) {
+            if(empty($errors)) {
                 try {
                     $this->userRepository->addUser($username, $firstname, $surname, $passwordhash, $email);
+                    return null;
                 } catch (\Exception $exception) {
                     $errors[] = "Account konnte nicht erstellt werden";
                 }

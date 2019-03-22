@@ -6,7 +6,7 @@
     </p>
 </div>
 
-<?php if(!empty($errors)): ?>
+<?php if(isset($errors)): ?>
     <div class="container">
         <ul>
             <?php foreach($errors AS $error):?>

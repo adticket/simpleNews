@@ -13,7 +13,7 @@
         </div>
         <div class="navbar-nav" id="navbarNav">
             <a class="nav-item nav-link" href="index">Startseite</a>
-            <a class="nav-item nav-link" href="addEntry">Eintragen</a>
+            <a class="nav-item nav-link" href="dashboard">Dashboard</a>
             <a class="nav-item nav-link" href="login">Login</a>
         </div>
     </nav>

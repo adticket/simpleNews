@@ -9,12 +9,14 @@
 namespace App\Entry;
 
 use App\Core\AbstractController;
+use App\User\LoginService;
 
 class EntryController extends AbstractController
 {
-    public function __construct(EntryRepository $entryRepository)
+    public function __construct(EntryRepository $entryRepository, LoginService $loginService)
     {
         $this->entryRepository = $entryRepository;
+        $this->loginService = $loginService;
     }
 
     public function index()
@@ -38,6 +40,7 @@ class EntryController extends AbstractController
 
     public function addEntry()
     {
+        $this->loginService->check();
         $this->render("Entries/addEntry", []);
     }
 }
