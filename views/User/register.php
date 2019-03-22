@@ -1,6 +1,22 @@
 <?php   include_once __DIR__ . "/../layout/header.php"; ?>
 
-<div class="container"><h1>REGISTRIERUNG</h1></div>
+<div class="container">
+    <p class="h4">
+        Account erstellen
+    </p>
+</div>
+
+<?php if(!empty($errors)): ?>
+    <div class="container">
+        <ul>
+            <?php foreach($errors AS $error):?>
+                <li>
+                    <?php echo $error; ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
 
 <div class="container">
     <form method="post" action="register" class="form-horizontal">

@@ -47,4 +47,19 @@ class UserRepository extends AbstractRepository
 
         return $user;
     }
+
+    public function addUser($username, $firstname, $surname, $passwordhash, $email)
+    {
+        $table = $this->getTableName();
+
+        $stmt = $this->pdo->prepare("INSERT INTO {$table} (username, password, firstname, surname, email)
+                                              VALUES (:un, :pw, :fn, :sn, :email)");
+        $stmt->execute([
+            'un' => $username,
+            'pw' => $passwordhash,
+            'fn' => $firstname,
+            'sn' => $surname,
+            'email' => $email
+        ]);
+    }
 }

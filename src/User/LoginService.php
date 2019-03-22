@@ -68,4 +68,48 @@ class LoginService
             die;
         }
     }
+
+    public function register()
+    {
+        if(!empty($_POST))
+        {
+            $errors=[];
+            $firstname = e($_POST['firstname']);
+            $surname = e($_POST['surname']);
+            $username = e($_POST['username']);
+            $email = e($_POST['email']);
+            $password1 = e($_POST['password']);
+            $password2 = e($_POST['password2']);
+            $passwordhash = password_hash($password1, PASSWORD_DEFAULT);
+
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+            {
+                $errors[] = "Ungültige E-Mail-Adresse";
+            }
+            if(!empty($this->userRepository->findByEmail($email)))
+            {
+                $errors[] = "E-Mail-Adresse bereits vorhanden";
+            }
+
+            if(!password_verify($password2, $passwordhash))
+            {
+                $errors[] = "Passwörter stimmen nicht überein";
+            }
+
+            if(!empty($this->userRepository->findByUsername($username)))
+            {
+                $errors[] = "Username bereits verwendet";
+            }
+
+            if(!isset($errors)) {
+                try {
+                    $this->userRepository->addUser($username, $firstname, $surname, $passwordhash, $email);
+                } catch (\Exception $exception) {
+                    $errors[] = "Account konnte nicht erstellt werden";
+                }
+            }
+
+            return $errors;
+        }
+    }
 }
