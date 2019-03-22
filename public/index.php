@@ -6,6 +6,8 @@
  * Time: 10:32
  */
 
+session_start();
+
 require __DIR__ . "/../init.php";
 
 $pathInfo = $_SERVER['PATH_INFO'];
@@ -30,6 +32,14 @@ $routes = [
     '/register' => [
         'controller' => 'userController',
         'method' => 'register'
+    ],
+    '/dashboard' => [
+        'controller' => 'userController',
+        'method' => 'dashboard'
+    ],
+    '/logout' => [
+        'controller' => 'userController',
+        'method' => 'logout'
     ]
 ];
 

@@ -1,5 +1,13 @@
 <?php   include_once __DIR__ . "/../layout/header.php"; ?>
 
+<?php if($error):?>
+<div class="container">
+    <p class="border border-danger px-md-1">
+        <?php echo "Login fehlgeschlagen. Bitte erneut versuchen!"; ?>
+    </p>
+</div>
+<?php endif; ?>
+
 <div class="container">
     <form method="post" action="login" class="form-horizontal">
         <div class="form-group">
