@@ -10,7 +10,14 @@ session_start();
 
 require __DIR__ . "/../init.php";
 
-$pathInfo = $_SERVER['PATH_INFO'];
+if(isset($_SERVER['PATH_INFO']))
+{
+    $pathInfo = $_SERVER['PATH_INFO'];
+}
+else
+{
+    $pathInfo = "/index";
+}
 
 $routes = [
     '/index' => [

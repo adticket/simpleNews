@@ -13,9 +13,9 @@ use http\Header;
 
 class UserController extends AbstractController
 {
-    public  function __construct($userRepository)
+    public  function __construct(LoginService $loginService)
     {
-        $this->userRepository = $userRepository;
+        $this->loginService = $loginService;
     }
 
     public function login()
@@ -24,51 +24,18 @@ class UserController extends AbstractController
         if(!empty($_POST['login']) && !empty($_POST['password']))
         {
             $login = e($_POST['login']);
+            $password = e($_POST['password']);
 
-            if(filter_var($login, FILTER_VALIDATE_EMAIL))
+            if($this->loginService->attempt($login, $password))
             {
-                $user = $this->userRepository->findByEmail($login);
-                if(!empty($user))
-                {
-                    if (password_verify($_POST['password'], $user['password']))
-                    {
-                        $_SESSION['login'] = $user['username'];
-                        session_regenerate_id(true);
-                        header("Location: dashboard");
-                        return;
-                    }
-                    else
-                    {
-                        $error = true;
-                    }
-                }
-                else
-                {
-                    $error = true;
-                }
+                header("Location: dashboard");
+                return;
             }
             else
             {
-                $user = $this->userRepository->findByUsername($login);
-                if(!empty($user))
-                {
-                    if (password_verify($_POST['password'], $user['password']))
-                    {
-                        $_SESSION['login'] = $user['username'];
-                        session_regenerate_id(true);
-                        header("Location: dashboard");
-                        return;
-                    }
-                    else
-                    {
-                        $error = true;
-                    }
-                }
-                else
-                {
-                    $error = true;
-                }
+                $error = true;
             }
+
         }
         $this->render(
             'User/login', ['error' => $error]);
@@ -76,8 +43,7 @@ class UserController extends AbstractController
 
     public function logout()
     {
-        unset($_SESSION['login']);
-        session_regenerate_id(true);
+        $this->loginService->logout();
         header("Location: login");
     }
 
@@ -94,7 +60,7 @@ class UserController extends AbstractController
         }
         else
         {
-            echo "Niemand eingeloggt";
+            header("Location: login");
         }
     }
 }
