@@ -55,4 +55,17 @@ class LoginService
         unset($_SESSION['login']);
         session_regenerate_id(true);
     }
+
+    public function check()
+    {
+        if($_SESSION['login'])
+        {
+            return true;
+        }
+        else
+        {
+            header("Location: login");
+            die;
+        }
+    }
 }

@@ -54,13 +54,6 @@ class UserController extends AbstractController
 
     public function dashboard()
     {
-        if(isset($_SESSION['login']))
-        {
-            echo $_SESSION['login'];
-        }
-        else
-        {
-            header("Location: login");
-        }
+
     }
 }
