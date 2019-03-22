@@ -9,6 +9,7 @@
 namespace App\Core;
 
 use App\Entry\EntryController;
+use App\User\AdminController;
 use App\User\LoginService;
 use App\User\UserController;
 use App\User\UserRepository;
@@ -60,6 +61,10 @@ class Container
             'loginService' => function()
             {
                 return new LoginService($this->make('userRepository'));
+            },
+            'adminController' => function()
+            {
+                return new AdminController($this->make('entryRepository'), $this->make('loginService'));
             }
         ];
     }

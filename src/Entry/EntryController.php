@@ -33,7 +33,7 @@ class EntryController extends AbstractController
     public function singleEntry()
     {
         $id = $_GET['eid'];
-        $entry = $this->entryRepository->find($id);
+        $entry = $this->entryRepository->findById($id);
         $this->render("Entries/singleEntry", ['entry' => $entry]);
     }
 

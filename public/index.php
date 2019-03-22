@@ -47,6 +47,10 @@ $routes = [
     '/logout' => [
         'controller' => 'userController',
         'method' => 'logout'
+    ],
+    '/userEntries' => [
+        'controller' => 'adminController',
+        'method' => 'showUserEntries'
     ]
 ];
 

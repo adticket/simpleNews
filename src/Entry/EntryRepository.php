@@ -52,7 +52,7 @@ class EntryRepository extends AbstractRepository
         return $entries;
     }
 
-    function find($id)
+    function findById($id)
     {
         $table = $this->getTableName();
         $model = $this->getModelName();
@@ -62,5 +62,16 @@ class EntryRepository extends AbstractRepository
         $entry = $stmt->fetch(8);
 
         return $entry;
+    }
+
+    function findByAuthor($author)
+    {
+        $table = $this->getTableName();
+        $model = $this->getModelName();
+        $stmt = $this->pdo->prepare("SELECT * FROM {$table} WHERE author = :author ORDER BY dateofentry DESC ");
+        $stmt->execute(['author' => $author]);
+        $entries = $stmt->fetchAll(PDO::FETCH_CLASS, $model);
+
+        return $entries;
     }
 }
