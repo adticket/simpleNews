@@ -49,11 +49,14 @@ class UserController extends AbstractController
 
     public function register()
     {
+        if(!empty($_POST()))
         $this->render('User/register',[]);
     }
 
     public function dashboard()
     {
+        $this->loginService->check();
 
+        $this->render("User/dashboard", []);
     }
 }
