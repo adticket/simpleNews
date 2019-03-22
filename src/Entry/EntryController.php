@@ -23,7 +23,7 @@ class EntryController extends AbstractController
     {
         if(isset($_POST['entrytitle']) && isset($_POST['blogcontent']))
         {
-            $this->entryRepository->insertEntry($_POST['entrytitle'], $_POST['blogcontent']);
+            $this->entryRepository->insertEntry($_POST['entrytitle'], $_POST['blogcontent'], $_SESSION['login']);
         }
 
         $entries = $this->entryRepository->allSortedByDate();

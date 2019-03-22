@@ -23,16 +23,23 @@ class EntryRepository extends AbstractRepository
         return 'BlogEntries';
     }
 
-    public function insertEntry($title, $content)
+    public function insertEntry($title, $content, $author)
     {
         $content = e($content);
         $title = e($title);
         $datetime = new \DateTime();
         $datetime = $datetime->format('Y-m-d H:i:s');
-        $author = "Automatisieren";
 
-        $stmt = $this->pdo->prepare("INSERT INTO BlogEntries (blogtitle, blogcontent, dateofentry, author) VALUES (:bt, :bc, :doe, :a)");
-        $stmt->execute(['bt' => $title, 'bc' => $content, 'doe' => $datetime, 'a' => $author]);
+        $stmt = $this->pdo->prepare("INSERT INTO 
+            BlogEntries (blogtitle, blogcontent, dateofentry, author) 
+            VALUES (:bt, :bc, :doe, :a)"
+        );
+        $stmt->execute([
+            'bt' => $title,
+            'bc' => $content,
+            'doe' => $datetime,
+            'a' => $author
+        ]);
     }
 
     function allSortedByDate()
