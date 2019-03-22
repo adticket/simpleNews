@@ -8,7 +8,7 @@
 
 <?php if(isset($errors)): ?>
     <div class="container">
-        <ul>
+        <ul class="border border-danger">
             <?php foreach($errors AS $error):?>
                 <li>
                     <?php echo $error; ?>
