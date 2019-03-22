@@ -13,10 +13,9 @@ use App\User\LoginService;
 
 class EntryController extends AbstractController
 {
-    public function __construct(EntryRepository $entryRepository, LoginService $loginService)
+    public function __construct(EntryRepository $entryRepository)
     {
         $this->entryRepository = $entryRepository;
-        $this->loginService = $loginService;
     }
 
     public function index()
@@ -40,7 +39,6 @@ class EntryController extends AbstractController
 
     public function addEntry()
     {
-        $this->loginService->check();
         $this->render("Entries/addEntry", []);
     }
 }

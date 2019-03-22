@@ -47,7 +47,7 @@ class Container
             },
             'entryController' => function()
             {
-                return new EntryController($this->make('entryRepository'), $this->make('loginService'));
+                return new EntryController($this->make('entryRepository'));
             },
             'userRepository' => function()
             {
@@ -62,7 +62,6 @@ class Container
                 return new LoginService($this->make('userRepository'));
             }
         ];
-
     }
 
     function make($name)
