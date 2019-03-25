@@ -10,6 +10,7 @@ namespace App\User;
 
 
 use App\Core\AbstractController;
+use App\Entry\EntryModel;
 use App\Entry\EntryRepository;
 
 class AdminController extends AbstractController
@@ -39,15 +40,19 @@ class AdminController extends AbstractController
         $this->loginService->check();
 
         $error = null;
-        $id = $_GET['eid'];
 
-        if($id != null)
+        $entry = new EntryModel();
+        $entry->entryID = e($_GET['eid']);
+
+        if($entry->entryID != null)
         {
-            if (isset($_POST['update'])) {
-                $this->entryRepository->updateEntry($id, e($_POST['blogtitle']), e($_POST['blogcontent']));
+            if (isset($_POST['update']) && !empty($_POST['blogcontent']) && !empty($_POST['blogtitle'])) {
+                $entry->blogtitle = e($_POST['blogtitle']);
+                $entry->blogcontent = e($_POST['blogcontent']);
+                $this->entryRepository->updateEntry($entry);
             }
             if (isset($_POST['delete'])) {
-                $this->entryRepository->deleteById($id);
+                $this->entryRepository->deleteById($entry);
                 header("Location: userEntries");
             }
         }
@@ -56,7 +61,7 @@ class AdminController extends AbstractController
             $error = "Post nicht gefunden.";
         }
 
-        $entry = $this->entryRepository->findByIdAndAuthor($id, $_SESSION['login']);
+        $entry = $this->entryRepository->findByIdAndAuthor($entry->entryID, $_SESSION['login']);
 
         $this->render("layout/header", [
             'navigation' => $this->loginService->getNavigation()
