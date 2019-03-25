@@ -1,5 +1,3 @@
-<?php   include_once __DIR__ . "/../layout/header.php"; ?>
-
 <?php if($error):?>
 <div class="container">
     <p class="border border-danger px-md-1">

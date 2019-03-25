@@ -1,5 +1,3 @@
-<?php   include_once __DIR__ . "/../layout/header.php"; ?>
-
 <div class="container">
     <p class="h4">
         Account erstellen

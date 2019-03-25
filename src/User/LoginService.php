@@ -113,4 +113,23 @@ class LoginService
             return $errors;
         }
     }
+
+    public function getNavigation()
+    {
+        if(isset($_SESSION['login']))
+        {
+            return [
+                'index' => 'Startseite',
+                'dashboard' => 'Dashboard',
+                'logout' => 'Logout'
+                ];
+        }
+        else
+        {
+            return [
+                'index' => 'Startseite',
+                'login' => 'Login'
+            ];
+        }
+    }
 }

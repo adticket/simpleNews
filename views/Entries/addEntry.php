@@ -1,7 +1,3 @@
-<?php   include_once __DIR__ . "/../layout/header.php"; ?>
-
-<?php //var_dump();?>
-
 <div class="container">
     <form method="post" action="index">
         <div class="form-group">

@@ -37,6 +37,8 @@ class UserController extends AbstractController
             }
 
         }
+
+        $this->render("layout/header", ['navigation' => $this->loginService->getNavigation()]);
         $this->render(
             'User/login', ['error' => $error]);
     }
@@ -50,6 +52,8 @@ class UserController extends AbstractController
     public function register()
     {
         $errors = $this->loginService->register();
+
+        $this->render("layout/header", ['navigation' => $this->loginService->getNavigation()]);
         $this->render('User/register',[
             'errors' => $errors
         ]);
@@ -59,6 +63,7 @@ class UserController extends AbstractController
     {
         $this->loginService->check();
 
+        $this->render("layout/header", ['navigation' => $this->loginService->getNavigation()]);
         $this->render("User/dashboard", []);
     }
 }

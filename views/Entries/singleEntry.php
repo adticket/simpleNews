@@ -1,5 +1,3 @@
-<?php   include_once __DIR__ . "/../layout/header.php"; ?>
-
 <div class="container">
     <div class="card">
         <div class="card-header">

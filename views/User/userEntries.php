@@ -1,5 +1,8 @@
 <?php   include_once __DIR__ . "/../layout/header.php"; ?>
 
+<div class="container h3">
+    Ihre Einträge: <?php echo count($entries); ?>
+</div>
 
 <div class="container">
     <?php foreach ($entries AS $entry): ?>

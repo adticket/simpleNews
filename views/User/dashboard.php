@@ -1,5 +1,3 @@
-<?php   include_once __DIR__ . "/../layout/header.php"; ?>
-
 <!-- Menü für "Autoren" / registrierte User -->
 
 <div class="container">

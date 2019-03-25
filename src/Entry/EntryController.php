@@ -13,9 +13,10 @@ use App\User\LoginService;
 
 class EntryController extends AbstractController
 {
-    public function __construct(EntryRepository $entryRepository)
+    public function __construct(EntryRepository $entryRepository, LoginService $loginService)
     {
         $this->entryRepository = $entryRepository;
+        $this->loginService = $loginService;
     }
 
     public function index()
@@ -27,6 +28,7 @@ class EntryController extends AbstractController
 
         $entries = $this->entryRepository->allSortedByDate();
 
+        $this->render("layout/header", ['navigation' => $this->loginService->getNavigation()]);
         $this->render("Entries/index", ['entries' => $entries]);
     }
 
@@ -34,11 +36,13 @@ class EntryController extends AbstractController
     {
         $id = $_GET['eid'];
         $entry = $this->entryRepository->findById($id);
+        $this->render("layout/header", ['navigation' => $this->loginService->getNavigation()]);
         $this->render("Entries/singleEntry", ['entry' => $entry]);
     }
 
     public function addEntry()
     {
+        $this->render("layout/header", ['navigation' => $this->loginService->getNavigation()]);
         $this->render("Entries/addEntry", []);
     }
 }

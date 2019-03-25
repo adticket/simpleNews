@@ -26,6 +26,7 @@ class AdminController extends AbstractController
 
         $entries = $this->entryRepository->findByAuthor($_SESSION['login']);
 
+        $this->render("layout/header", ['navigation' => $this->loginService->getNavigation()]);
         $this->render("User/userEntries", [
             'entries' => $entries
         ]);

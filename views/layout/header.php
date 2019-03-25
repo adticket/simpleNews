@@ -12,9 +12,9 @@
             <span class="navbar-brand mb-0 h1">PP-1.1</span>
         </div>
         <div class="navbar-nav" id="navbarNav">
-            <a class="nav-item nav-link" href="index">Startseite</a>
-            <a class="nav-item nav-link" href="dashboard">Dashboard</a>
-            <a class="nav-item nav-link" href="login">Login</a>
+            <?php foreach($navigation as $item => $value): ?>
+            <a class="nav-item nav-link" href="<?php echo $item; ?>"><?php echo $value;?></a>
+            <?php endforeach; ?>
         </div>
     </nav>
 </div>
