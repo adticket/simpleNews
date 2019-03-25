@@ -74,4 +74,22 @@ class EntryRepository extends AbstractRepository
 
         return $entries;
     }
+
+    function deleteById($id)
+    {
+        $table = $this->getTableName();
+        $stmt = $this->pdo->prepare("DELETE FROM {$table} WHERE entryID = :eid");
+        $stmt->execute(['eid' => $id]);
+    }
+
+    function updateEntry($id, $title, $content)
+    {
+        $table = $this->getTableName();
+        $stmt = $this->pdo->prepare("UPDATE {$table} SET blogtitle = :bt, blogcontent = :bc WHERE entryID = :eid");
+        $stmt->execute([
+            'bt' => $title,
+            'bc' => $content,
+            'eid' => $id
+        ]);
+    }
 }

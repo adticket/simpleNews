@@ -51,6 +51,10 @@ $routes = [
     '/userEntries' => [
         'controller' => 'adminController',
         'method' => 'showUserEntries'
+    ],
+    '/editEntry' => [
+        'controller' => 'adminController',
+        'method' => 'editEntry'
     ]
 ];
 

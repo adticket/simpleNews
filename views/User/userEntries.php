@@ -8,7 +8,7 @@
     <?php foreach ($entries AS $entry): ?>
         <div class="card">
             <div class="card-header">
-                <a href="entry?eid=<?php echo $entry['entryID']; ?>" class="text-dark font-weight-bold">
+                <a href="editEntry?eid=<?php echo $entry['entryID']; ?>" class="text-dark font-weight-bold">
                     <?php echo nl2br($entry['blogtitle']); ?>
                 </a>
             </div>

@@ -26,9 +26,38 @@ class AdminController extends AbstractController
 
         $entries = $this->entryRepository->findByAuthor($_SESSION['login']);
 
-        $this->render("layout/header", ['navigation' => $this->loginService->getNavigation()]);
+        $this->render("layout/header", [
+            'navigation' => $this->loginService->getNavigation()
+        ]);
         $this->render("User/userEntries", [
             'entries' => $entries
+        ]);
+    }
+
+    public function editEntry()
+    {
+        $this->loginService->check();
+
+        $id = $_GET['eid'];
+
+        if(isset($_POST['update']))
+        {
+            $this->entryRepository->updateEntry($id, e($_POST['blogtitle']), e($_POST['blogcontent']));
+        }
+        if(isset($_POST['delete']))
+        {
+            $this->entryRepository->deleteById($id);
+            header("Location: userEntries");
+        }
+
+
+        $entry = $this->entryRepository->findById($id);
+
+        $this->render("layout/header", [
+            'navigation' => $this->loginService->getNavigation()
+        ]);
+        $this->render("User/editEntry", [
+            'entry' => $entry
         ]);
     }
 }
