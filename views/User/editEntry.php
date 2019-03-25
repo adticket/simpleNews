@@ -1,3 +1,11 @@
+<?php if(isset($error)):?>
+    <div class="container">
+        <p class="border border-danger px-md-1">
+            <?php echo $error; ?>
+        </p>
+    </div>
+<?php endif; ?>
+
 <div class="container h3">
     Eintrag bearbeiten
 </div>

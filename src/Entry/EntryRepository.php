@@ -10,6 +10,7 @@ namespace App\Entry;
 
 use App\Core\AbstractRepository;
 use PDO;
+use Exception;
 
 class EntryRepository extends AbstractRepository
 {
@@ -61,6 +62,27 @@ class EntryRepository extends AbstractRepository
         $stmt->setFetchMode(PDO::FETCH_CLASS, $model);
         $entry = $stmt->fetch(8);
 
+        return $entry;
+    }
+
+    function findByIdAndAuthor($id, $author)
+    {
+        $table = $this->getTableName();
+        $model = $this->getModelName();
+        $stmt = $this->pdo->prepare("SELECT * FROM {$table} WHERE entryID = :eid AND author = :author");
+        try
+        {
+            $stmt->execute([
+                'eid' => $id,
+                'author' => $author
+            ]);
+            $stmt->setFetchMode(PDO::FETCH_CLASS, $model);
+            $entry = $stmt->fetch(8);
+        }
+        catch (Exception $exception)
+        {
+            var_dump($exception);
+        }
         return $entry;
     }
 

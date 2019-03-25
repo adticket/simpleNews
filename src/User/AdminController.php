@@ -38,26 +38,32 @@ class AdminController extends AbstractController
     {
         $this->loginService->check();
 
+        $error = null;
         $id = $_GET['eid'];
 
-        if(isset($_POST['update']))
+        if($id != null)
         {
-            $this->entryRepository->updateEntry($id, e($_POST['blogtitle']), e($_POST['blogcontent']));
+            if (isset($_POST['update'])) {
+                $this->entryRepository->updateEntry($id, e($_POST['blogtitle']), e($_POST['blogcontent']));
+            }
+            if (isset($_POST['delete'])) {
+                $this->entryRepository->deleteById($id);
+                header("Location: userEntries");
+            }
         }
-        if(isset($_POST['delete']))
+        else
         {
-            $this->entryRepository->deleteById($id);
-            header("Location: userEntries");
+            $error = "Post nicht gefunden.";
         }
 
-
-        $entry = $this->entryRepository->findById($id);
+        $entry = $this->entryRepository->findByIdAndAuthor($id, $_SESSION['login']);
 
         $this->render("layout/header", [
             'navigation' => $this->loginService->getNavigation()
         ]);
         $this->render("User/editEntry", [
-            'entry' => $entry
+            'entry' => $entry,
+            'error' => $error
         ]);
     }
 }
