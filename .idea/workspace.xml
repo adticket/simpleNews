@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4ea9b572-5593-4c4d-9479-f9743e16b9f1" name="Default Changelist" comment="add method to user repository, clean up abstract repository">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entry/EntryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entry/EntryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entry/EntryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entry/EntryRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/User/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/Entries/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/Entries/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/User/userEntries.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/User/userEntries.php" afterDir="false" />
     </list>
+    <ignored path="V1/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +56,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/User/AdminController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="259">
@@ -70,6 +66,11 @@
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/V1/.alt-index.php">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -94,7 +95,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/login.html" />
         <option value="$PROJECT_DIR$/author.html" />
         <option value="$PROJECT_DIR$/mysqlConnection.php" />
@@ -145,6 +145,7 @@
         <option value="$PROJECT_DIR$/src/Entry/EntryController.php" />
         <option value="$PROJECT_DIR$/src/Entry/EntryRepository.php" />
         <option value="$PROJECT_DIR$/src/User/AdminController.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -167,17 +168,6 @@
               <item name="myBlog" type="b2602c69:ProjectViewProjectNode" />
               <item name="myBlog" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="myBlog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="myBlog" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="myBlog" type="b2602c69:ProjectViewProjectNode" />
-              <item name="myBlog" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="User" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -187,11 +177,11 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Udemy" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/V1" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Ignored.Files" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -263,7 +253,7 @@
       <workItem from="1553272428084" duration="79000" />
       <workItem from="1553273140504" duration="675000" />
       <workItem from="1553502138973" duration="17414000" />
-      <workItem from="1553588449731" duration="9101000" />
+      <workItem from="1553588449731" duration="9999000" />
     </task>
     <task id="LOCAL-00001" summary="add user class model and repository">
       <created>1553163963361</created>
@@ -276,7 +266,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="264126000" />
+    <option name="totallyTimeSpent" value="265024000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -323,8 +313,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="add method to user repository, clean up abstract repository" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/login.php" />
-    <entry file="file://$PROJECT_DIR$/alt_index.php" />
     <entry file="file://$PROJECT_DIR$/sessionvalidation.php" />
     <entry file="file://$PROJECT_DIR$/editentry.php" />
     <entry file="file://$PROJECT_DIR$/editor.php" />
@@ -619,6 +607,16 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="4" selection-start-column="4" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/V1/.alt-index.php">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
