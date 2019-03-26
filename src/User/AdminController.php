@@ -35,7 +35,7 @@ class AdminController extends AbstractController
         ]);
         if($numPages>0)
         {
-            $this->render("Entries/pagination", [
+            $this->render("layout/pagination", [
                 'numPages' => $numPages
             ]);
         }
