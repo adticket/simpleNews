@@ -9,7 +9,6 @@
 namespace App\User;
 
 use App\Core\AbstractController;
-use http\Header;
 
 class UserController extends AbstractController
 {
