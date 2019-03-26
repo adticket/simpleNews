@@ -56,7 +56,7 @@
         </div>
 
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Registrieren" />
+            <input type="submit" class="btn btn-primary col-sm-2" value="Registrieren" />
         </div>
     </form>
 </div>

@@ -21,8 +21,8 @@
             <input type="password" name="password" class="form-control" required>
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Einloggen" />
-            <a href="register" class="btn btn-dark">Registrieren</a>
+            <input type="submit" class="btn btn-primary col-sm-2" value="Einloggen" />
+            <a href="register" class="btn btn-dark col-sm-2 float-right">Registrieren</a>
         </div>
     </form>
 </div>
