@@ -132,11 +132,11 @@ class EntryRepository extends AbstractRepository
     function getPartOfArray(array $entries, $limitPerPage)
     {
         if(isset($_GET['page'])){
-            $entries = array_slice($entries, $_GET['page'], $limitPerPage);
+            $entries = array_slice($entries, ($_GET['page']-1)*$limitPerPage, $limitPerPage);
         }
         else
         {
-            $entries = array_slice($entries, 1, $limitPerPage);
+            $entries = array_slice($entries, 0, $limitPerPage);
         }
         return $entries;
     }
