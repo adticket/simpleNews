@@ -26,11 +26,20 @@ class EntryController extends AbstractController
             $this->entryRepository->insertEntry($_POST['entrytitle'], $_POST['blogcontent'], $_SESSION['login']);
         }
 
+        $limitPerPage = 10;
         $entries = $this->entryRepository->allSortedByDate();
+        $numPages = $this->entryRepository->calculatePagination($entries, $limitPerPage);
+        $entries = $this->entryRepository->getPartOfArray($entries, $limitPerPage);
 
         $this->render("layout/header", [
             'navigation' => $this->loginService->getNavigation()
         ]);
+        if($numPages>0)
+        {
+            $this->render("Entries/pagination", [
+                'numPages' => $numPages
+            ]);
+        }
         $this->render("Entries/index", [
             'entries' => $entries
         ]);

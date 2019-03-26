@@ -25,11 +25,20 @@ class AdminController extends AbstractController
     {
         $this->loginService->check();
 
+        $limitPerPage = 10;
         $entries = $this->entryRepository->findByAuthor($_SESSION['login']);
+        $numPages = $this->entryRepository->calculatePagination($entries, $limitPerPage);
+        $entries = $this->entryRepository->getPartOfArray($entries, $limitPerPage);
 
         $this->render("layout/header", [
             'navigation' => $this->loginService->getNavigation()
         ]);
+        if($numPages>0)
+        {
+            $this->render("Entries/pagination", [
+                'numPages' => $numPages
+            ]);
+        }
         $this->render("User/userEntries", [
             'entries' => $entries
         ]);

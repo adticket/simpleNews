@@ -114,4 +114,30 @@ class EntryRepository extends AbstractRepository
             'eid' => $entry->entryID
         ]);
     }
+
+    function calculatePagination(array $entries, $limitPerPage)
+    {
+        $numPages = 0;
+        if(count($entries)>$limitPerPage)
+        {
+            $numPages = count($entries)/$limitPerPage;
+            if((count($entries)%$limitPerPage)>0)
+            {
+                $numPages++;
+            }
+        }
+        return $numPages;
+    }
+
+    function getPartOfArray(array $entries, $limitPerPage)
+    {
+        if(isset($_GET['page'])){
+            $entries = array_slice($entries, $_GET['page'], $limitPerPage);
+        }
+        else
+        {
+            $entries = array_slice($entries, 1, $limitPerPage);
+        }
+        return $entries;
+    }
 }

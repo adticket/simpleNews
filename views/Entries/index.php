@@ -1,7 +1,3 @@
-<?php   //include_once __DIR__ . "/../layout/header.php"; ?>
-
-<?php //var_dump();?>
-
 <div class="container">
     <?php foreach ($entries AS $entry): ?>
     <div class="card">
