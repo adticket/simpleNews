@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ea9b572-5593-4c4d-9479-f9743e16b9f1" name="Default Changelist" comment="add method to user repository, clean up abstract repository">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
-    <ignored path="V1/" />
+    <list default="true" id="4ea9b572-5593-4c4d-9479-f9743e16b9f1" name="Default Changelist" comment="add method to user repository, clean up abstract repository" />
+    <manually-removed-from-ignored>
+      <directory path="V1/" />
+    </manually-removed-from-ignored>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,7 +253,7 @@
       <workItem from="1553272428084" duration="79000" />
       <workItem from="1553273140504" duration="675000" />
       <workItem from="1553502138973" duration="17414000" />
-      <workItem from="1553588449731" duration="9999000" />
+      <workItem from="1553588449731" duration="10163000" />
     </task>
     <task id="LOCAL-00001" summary="add user class model and repository">
       <created>1553163963361</created>
@@ -266,7 +266,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="265024000" />
+    <option name="totallyTimeSpent" value="265188000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -279,9 +279,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="707" y="0" width="1213" height="1048" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20621225" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20621225" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -294,7 +293,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32969433" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4956044" visible="true" weight="0.32751092" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4956044" visible="true" weight="0.32751092" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5043956" side_tool="true" weight="0.32969433" />
       <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.3293348" />
       <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.4989011" weight="0.32969433" />
