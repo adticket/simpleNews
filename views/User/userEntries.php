@@ -1,3 +1,4 @@
+<?php if(count($entries)>0): ?>
 <div class="container">
     <?php foreach ($entries AS $entry): ?>
         <div class="card">
@@ -18,5 +19,10 @@
         <br />
     <?php endforeach; ?>
 </div>
+<?php else: ?>
+<div class="container h5">
+    Keine Einträge verfügbar. <a class="" href="dashboard">Zurück zum Dashboard</a>
+</div>
+<?php endif; ?>
 
 <?php   include_once __DIR__ . "/../layout/footer.php"; ?>
