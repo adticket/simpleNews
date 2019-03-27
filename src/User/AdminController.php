@@ -10,37 +10,36 @@ namespace App\User;
 
 
 use App\Core\AbstractController;
+use App\Core\PaginationService;
 use App\Entry\EntryModel;
 use App\Entry\EntryRepository;
 
 class AdminController extends AbstractController
 {
-    public function __construct(EntryRepository $entryRepository, LoginService $loginService)
+    public function __construct(EntryRepository $entryRepository, LoginService $loginService, PaginationService $paginationService)
     {
         $this->entryRepository = $entryRepository;
         $this->loginService = $loginService;
+        $this->paginationService = $paginationService;
     }
 
     public function showUserEntries()
     {
         $this->loginService->check();
 
-        $limitPerPage = 10;
-        $entries = $this->entryRepository->findByAuthor($_SESSION['login']);
-        $numPages = $this->entryRepository->calculatePagination($entries, $limitPerPage);
-        $entries = $this->entryRepository->getPartOfArray($entries, $limitPerPage);
+        $pagination = $this->paginationService->getPagination($_SESSION['login']);
 
         $this->render("layout/header", [
             'navigation' => $this->loginService->getNavigation()
         ]);
-        if($numPages>0)
+        if($pagination['numPages']>0)
         {
             $this->render("layout/pagination", [
-                'numPages' => $numPages
+                'numPages' => $pagination['numPages']
             ]);
         }
         $this->render("User/userEntries", [
-            'entries' => $entries
+            'entries' => $pagination['entries']
         ]);
     }
 

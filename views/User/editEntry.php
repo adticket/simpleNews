@@ -19,9 +19,9 @@
             <textarea class="form-control" name="blogcontent" rows="10"><?php echo $entry['blogcontent']; ?></textarea>
         </div>
         <div class="form-group">
-            <input type="submit" class="btn btn-primary col-sm-2" name="update" value="Änderung speichern">
-            <input type="submit" class="btn btn-secondary col-sm-2" name="discard" value="Änderung verwerfen">
-            <input type="submit" class="btn btn-danger col-sm-2 float-right" name="delete" value="Eintrag löschen">
+            <input type="submit" class="btn btn-primary col-sm-3" name="update" value="Änderung speichern">
+            <input type="submit" class="btn btn-secondary col-sm-3" name="discard" value="Änderung verwerfen">
+            <input type="submit" class="btn btn-danger col-sm-3 float-right" name="delete" value="Eintrag löschen">
         </div>
     </form>
 </div>

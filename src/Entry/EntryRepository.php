@@ -140,4 +140,62 @@ class EntryRepository extends AbstractRepository
         }
         return $entries;
     }
+
+    public function getEntryAmount($author="")
+    {
+        if(empty($author))
+        {
+            $stmt = $this->pdo->prepare("SELECT * FROM BlogEntries");
+            $stmt->execute();
+            return $stmt->rowCount();
+        }
+        else
+        {
+            $stmt = $this->pdo->prepare("SELECT * FROM BlogEntries WHERE author = :author");
+            $stmt->execute(['author' => $author]);
+            return $stmt->rowCount();
+        }
+    }
+
+    public function getEntriesOfPage($page, $entriesPerPage, $author="")
+    {
+        if(empty($page))
+        {
+            $page=1;
+        }
+        $offset = ($page-1)*$entriesPerPage;
+        $model = $this->getModelName();
+        $table = $this->getTableName();
+
+
+        if(empty($author))
+        {
+            $stmt = $this->pdo->prepare("
+                                        SELECT * 
+                                        FROM {$table} 
+                                        ORDER BY dateofentry DESC 
+                                        LIMIT :firstEntry,:entriesPerPage
+            ");
+            $stmt->bindParam(':firstEntry', $offset, PDO::PARAM_INT);
+            $stmt->bindParam(':entriesPerPage', $entriesPerPage, PDO::PARAM_INT);
+            $stmt->execute();
+            $entries = $stmt->fetchAll(PDO::FETCH_CLASS, $model);
+            return $entries;
+        }
+        else
+        {
+            $stmt = $this->pdo->prepare("
+                                          SELECT * 
+                                          FROM {$table} 
+                                          WHERE author = :author 
+                                          ORDER BY dateofentry DESC 
+                                          LIMIT :firstEntry,:entriesPerPage
+            ");
+            $stmt->bindParam(':author', $author, PDO::PARAM_STR_NATL);
+            $stmt->bindParam(':firstEntry', $offset, PDO::PARAM_INT);
+            $stmt->bindParam(':entriesPerPage', $entriesPerPage, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_CLASS, $this->getModelName());
+        }
+    }
 }

@@ -9,14 +9,16 @@
 namespace App\Entry;
 
 use App\Core\AbstractController;
+use App\Core\PaginationService;
 use App\User\LoginService;
 
 class EntryController extends AbstractController
 {
-    public function __construct(EntryRepository $entryRepository, LoginService $loginService)
+    public function __construct(EntryRepository $entryRepository, LoginService $loginService, PaginationService $paginationService)
     {
         $this->entryRepository = $entryRepository;
         $this->loginService = $loginService;
+        $this->paginationService = $paginationService;
     }
 
     public function index()
@@ -26,22 +28,19 @@ class EntryController extends AbstractController
             $this->entryRepository->insertEntry($_POST['entrytitle'], $_POST['blogcontent'], $_SESSION['login']);
         }
 
-        $limitPerPage = 10;
-        $entries = $this->entryRepository->allSortedByDate();
-        $numPages = $this->entryRepository->calculatePagination($entries, $limitPerPage);
-        $entries = $this->entryRepository->getPartOfArray($entries, $limitPerPage);
+        $pagination = $this->paginationService->getPagination();
 
         $this->render("layout/header", [
             'navigation' => $this->loginService->getNavigation()
         ]);
-        if($numPages>0)
+        if($pagination['numPages']>0)
         {
             $this->render("layout/pagination", [
-                'numPages' => $numPages
+                'numPages' => $pagination['numPages']
             ]);
         }
         $this->render("Entries/index", [
-            'entries' => $entries
+            'entries' => $pagination['entries']
         ]);
     }
 

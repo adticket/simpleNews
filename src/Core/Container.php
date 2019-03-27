@@ -48,7 +48,7 @@ class Container
             },
             'entryController' => function()
             {
-                return new EntryController($this->make('entryRepository'), $this->make('loginService'));
+                return new EntryController($this->make('entryRepository'), $this->make('loginService'), $this->make('paginationService'));
             },
             'userRepository' => function()
             {
@@ -64,7 +64,11 @@ class Container
             },
             'adminController' => function()
             {
-                return new AdminController($this->make('entryRepository'), $this->make('loginService'));
+                return new AdminController($this->make('entryRepository'), $this->make('loginService'), $this->make('paginationService'));
+            },
+            'paginationService' => function()
+            {
+                return new PaginationService($this->make('entryRepository'));
             }
         ];
     }
