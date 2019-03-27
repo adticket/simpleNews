@@ -27,6 +27,11 @@ class AdminController extends AbstractController
     {
         $this->loginService->check();
 
+        if(isset($_POST['entrytitle']) && isset($_POST['blogcontent']))
+        {
+            $this->entryRepository->insertEntry($_POST['entrytitle'], $_POST['blogcontent'], $_SESSION['login']);
+        }
+
         $pagination = $this->paginationService->getPagination($_SESSION['login']);
 
         $this->render("layout/header", [

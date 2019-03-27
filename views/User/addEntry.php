@@ -1,5 +1,5 @@
 <div class="container">
-    <form method="post" action="index">
+    <form method="post" action="userEntries">
         <div class="form-group">
             <label for="entrytitle">Schlagzeile</label>
             <input type="text" class="form-control" id="entrytitle" name="entrytitle" size="50" required>
