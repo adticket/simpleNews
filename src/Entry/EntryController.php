@@ -61,7 +61,7 @@ class EntryController extends AbstractController
         $this->render("layout/header", [
             'navigation' => $this->loginService->getNavigation()
         ]);
-        $this->render("Entries/addEntry", [
+        $this->render("User/addEntry", [
 
         ]);
     }
