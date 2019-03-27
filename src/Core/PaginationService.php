@@ -46,7 +46,11 @@ class PaginationService
             $pagination['currentPage'] = $_GET['page'];
         }
 
-        $pagination['entries'] = $this->entryRepository->getEntriesOfPage($pagination['currentPage'], $this->entriesPerPage, $author);
+        $pagination['entries'] = $this->entryRepository->getEntriesOfPage(
+            $pagination['currentPage'],
+            $this->entriesPerPage,
+            $author
+        );
 
         return $pagination;
     }
