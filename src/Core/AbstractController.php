@@ -8,6 +8,10 @@
 
 namespace App\Core;
 
+/*
+ * abstract Controller class
+ *  - provides render method
+ */
 abstract class AbstractController
 {
     protected function render($view, $params)

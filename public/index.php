@@ -6,10 +6,23 @@
  * Time: 10:32
  */
 
+/*
+ * Start of session
+ */
 session_start();
 
+/*
+ * Include Init.php
+ *  - loads autoloader
+ *  - creates instance of container
+ *  - contains function against sql-injections
+ */
 require __DIR__ . "/../init.php";
 
+/*
+ * Sets path if set in server array
+ *  - index if nothing is set yet
+ */
 if(isset($_SERVER['PATH_INFO']))
 {
     $pathInfo = $_SERVER['PATH_INFO'];
@@ -19,6 +32,10 @@ else
     $pathInfo = "/index";
 }
 
+/*
+ * Array with all possible routes
+ *  - contains path associated with controller and method
+ */
 $routes = [
     '/index' => [
         'controller' => 'entryController',
@@ -58,6 +75,13 @@ $routes = [
     ]
 ];
 
+/*
+ * If path exists:
+ *  - get controller
+ *  - call method
+ * else:
+ *  - route is set to index
+ */
 if(isset($routes[$pathInfo]))
 {
     $route = $routes[$pathInfo];

@@ -10,6 +10,10 @@ namespace App\Core;
 
 use PDO;
 
+/*
+ * Abstract Class for repository
+ *  - ensures that connection to database is available
+ */
 abstract class AbstractRepository
 {
     protected $pdo;
@@ -21,7 +25,7 @@ abstract class AbstractRepository
 
     abstract function getTableName();
     abstract function getModelName();
-
+    /*
     function all()
     {
         $table = $this->getTableName();
@@ -31,4 +35,5 @@ abstract class AbstractRepository
 
         return $entries;
     }
+    */
 }

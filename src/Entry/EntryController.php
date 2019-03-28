@@ -38,7 +38,7 @@ class EntryController extends AbstractController
         $this->render("layout/header", [
             'navigation' => $this->loginService->getNavigation()
         ]);
-        if($pagination['numPages']>0)
+        if($pagination['numPages']>1)
         {
             $this->render("layout/pagination", [
                 'numPages' => $pagination['numPages']
@@ -50,7 +50,7 @@ class EntryController extends AbstractController
         $this->render("Entries/index", [
             'entries' => $pagination['entries']
         ]);
-        if($pagination['numPages']>0)
+        if($pagination['numPages']>1)
         {
             $this->render("layout/pagination", [
                 'numPages' => $pagination['numPages']

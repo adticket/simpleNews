@@ -10,7 +10,10 @@ namespace App\Core;
 
 use ArrayAccess;
 
-
+/*
+ * abstract Model class
+ * implementing arrayAccess for Model
+ */
 abstract class AbstractModel implements ArrayAccess
 {
     public function offsetExists($offset)

@@ -37,7 +37,7 @@ class AdminController extends AbstractController
         $this->render("layout/header", [
             'navigation' => $this->loginService->getNavigation()
         ]);
-        if($pagination['numPages']>0)
+        if($pagination['numPages']>1)
         {
             $this->render("layout/pagination", [
                 'numPages' => $pagination['numPages']
@@ -46,7 +46,7 @@ class AdminController extends AbstractController
         $this->render("User/userEntries", [
             'entries' => $pagination['entries']
         ]);
-        if($pagination['numPages']>0)
+        if($pagination['numPages']>1)
         {
             $this->render("layout/pagination", [
                 'numPages' => $pagination['numPages']

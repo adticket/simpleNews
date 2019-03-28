@@ -20,9 +20,17 @@ use PDOException;
 
 class Container
 {
+    /*
+     * instances:   contains existing instances
+     * recipe:  contains constructor dependencies for all classes
+     *          and calls make-method
+     */
     private $instances = [];
     private $recipe = [];
 
+    /*
+     * creates and object of every class by using make-method
+     */
     function __construct()
     {
         $this->recipe = [
@@ -73,6 +81,11 @@ class Container
         ];
     }
 
+    /*
+     * checks if instances already exists in $instances[]
+     *  - returns it if it exists
+     *  - else creates it after recipe[]
+     */
     function make($name)
     {
         if(!empty($this->instances[$name]))
