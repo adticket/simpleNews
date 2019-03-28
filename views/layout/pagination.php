@@ -6,8 +6,8 @@
                     (!isset($_GET['page']) && $x == 1)){
                     echo "active";
                 } ?>">
-                <?php if(!isset($_POST['author'])): ?>
-                <a class="page-link" href="?page=<?php echo $x; ?>">
+                <?php if(isset($_GET['author'])): ?>
+                <a class="page-link" href="?author=<?php echo $_GET['author']; ?>&page=<?php echo $x; ?>">
                     <?php echo $x; ?>
                 </a>
                 <?php else: ?>

@@ -23,7 +23,16 @@ class EntryController extends AbstractController
 
     public function index()
     {
-        $pagination = $this->paginationService->getPagination();
+        if(isset($_GET['author']))
+        {
+            $author = $_GET['author'];
+        }
+        else
+        {
+            $author = "";
+        }
+
+        $pagination = $this->paginationService->getPagination($author);
         $authors = $this->entryRepository->getAuthors();
 
         $this->render("layout/header", [
