@@ -41,17 +41,7 @@ class EntryRepository extends AbstractRepository
         $stmt->bindParam(':a', $author, PDO::PARAM_STR);
         $stmt->execute();
     }
-    /*
-    function allSortedByDate()
-    {
-        $table = $this->getTableName();
-        $model = $this->getModelName();
-        $stmt = $this->pdo->query("SELECT * FROM {$table} ORDER BY dateofentry DESC");
-        $entries = $stmt->fetchAll(PDO::FETCH_CLASS, $model);
 
-        return $entries;
-    }
-    */
     function findById($id)
     {
         $table = $this->getTableName();
@@ -78,18 +68,7 @@ class EntryRepository extends AbstractRepository
 
         return $entry;
     }
-    /*
-    function findByAuthor($author)
-    {
-        $table = $this->getTableName();
-        $model = $this->getModelName();
-        $stmt = $this->pdo->prepare("SELECT * FROM {$table} WHERE author = :author ORDER BY dateofentry DESC ");
-        $stmt->execute(['author' => $author]);
-        $entries = $stmt->fetchAll(PDO::FETCH_CLASS, $model);
 
-        return $entries;
-    }
-    */
     function deleteById(EntryModel $entry)
     {
         $table = $this->getTableName();
@@ -111,33 +90,7 @@ class EntryRepository extends AbstractRepository
         $stmt->bindParam(':eid', $entry->entryID, PDO::PARAM_INT);
         $stmt->execute();
     }
-    /*
-    function calculatePagination(array $entries, $limitPerPage)
-    {
-        $numPages = 0;
-        if(count($entries)>$limitPerPage)
-        {
-            $numPages = count($entries)/$limitPerPage;
-            if((count($entries)%$limitPerPage)>0)
-            {
-                $numPages++;
-            }
-        }
-        return $numPages;
-    }
-    *
-    function getPartOfArray(array $entries, $limitPerPage)
-    {
-        if(isset($_GET['page'])){
-            $entries = array_slice($entries, ($_GET['page']-1)*$limitPerPage, $limitPerPage);
-        }
-        else
-        {
-            $entries = array_slice($entries, 0, $limitPerPage);
-        }
-        return $entries;
-    }
-    */
+
     public function getEntryAmount($author="")
     {
         if(empty($author))
