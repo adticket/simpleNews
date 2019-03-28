@@ -158,6 +158,6 @@ class EntryRepository extends AbstractRepository
             FROM {$table}
         ");
         $stmt->execute();
-        return $stmt->fetchAll(PDO::PARAM_STR);
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
 }

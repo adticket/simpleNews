@@ -24,6 +24,7 @@ class EntryController extends AbstractController
     public function index()
     {
         $pagination = $this->paginationService->getPagination();
+        $authors = $this->entryRepository->getAuthors();
 
         $this->render("layout/header", [
             'navigation' => $this->loginService->getNavigation()
@@ -34,9 +35,18 @@ class EntryController extends AbstractController
                 'numPages' => $pagination['numPages']
             ]);
         }
+        $this->render("layout/authorSearch",[
+            'authors' => $authors
+        ]);
         $this->render("Entries/index", [
             'entries' => $pagination['entries']
         ]);
+        if($pagination['numPages']>0)
+        {
+            $this->render("layout/pagination", [
+                'numPages' => $pagination['numPages']
+            ]);
+        }
     }
 
     public function singleEntry()

@@ -46,6 +46,12 @@ class AdminController extends AbstractController
         $this->render("User/userEntries", [
             'entries' => $pagination['entries']
         ]);
+        if($pagination['numPages']>0)
+        {
+            $this->render("layout/pagination", [
+                'numPages' => $pagination['numPages']
+            ]);
+        }
     }
 
     public function editEntry()

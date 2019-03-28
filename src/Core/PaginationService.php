@@ -17,7 +17,7 @@ class PaginationService
         $this->entryRepository = $entryRepository;
     }
 
-    public $entriesPerPage = 10;
+    public $entriesPerPage = 8;
 
     public function getPagination($author="")
     {

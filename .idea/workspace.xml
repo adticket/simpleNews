@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ea9b572-5593-4c4d-9479-f9743e16b9f1" name="Default Changelist" comment="add method to user repository, clean up abstract repository">
+      <change afterPath="$PROJECT_DIR$/views/layout/authorSearch.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Core/PaginationService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Core/PaginationService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entry/EntryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entry/EntryController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entry/EntryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entry/EntryRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/User/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/User/AdminController.php" afterDir="false" />
     </list>
     <manually-removed-from-ignored>
       <directory path="V1/" />
@@ -16,6 +20,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Core/PaginationService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+              <folding>
+                <element signature="e#174#298#0#PHP" />
+                <element signature="e#408#516#0#PHP" />
+                <element signature="e#598#857#0#PHP" />
+                <element signature="e#867#1044#0#PHP" />
+                <element signature="e#964#1044#0#PHP" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/layout/authorSearch.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="90" selection-start-line="5" selection-start-column="90" selection-end-line="5" selection-end-column="90" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/random.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -36,8 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Entry/EntryRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="156" column="28" selection-start-line="156" selection-start-column="28" selection-end-line="156" selection-end-column="28" />
+            <state relative-caret-position="519">
+              <caret line="160" column="50" lean-forward="true" selection-start-line="160" selection-start-column="50" selection-end-line="160" selection-end-column="50" />
               <folding>
                 <element signature="e#113#145#0#PHP" expanded="true" />
                 <element signature="e#226#309#0#PHP" />
@@ -63,17 +92,28 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Entry/EntryController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="62" column="1" lean-forward="true" selection-start-line="62" selection-start-column="1" selection-end-line="62" selection-end-column="1" />
+              <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
               <folding>
                 <element signature="e#113#145#0#PHP" expanded="true" />
                 <element signature="e#261#551#0#PHP" />
-                <element signature="e#557#1054#0#PHP" />
                 <element signature="e#1060#1392#0#PHP" />
                 <element signature="e#1398#1608#0#PHP" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/User/AdminController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="534">
+              <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+              <folding>
+                <element signature="e#113#145#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -101,8 +141,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/mysqlConnection.php" />
-        <option value="$PROJECT_DIR$/alt_index.php" />
         <option value="$PROJECT_DIR$/register.php" />
         <option value="$PROJECT_DIR$/test.php" />
         <option value="$PROJECT_DIR$/addentry.php" />
@@ -144,14 +182,16 @@
         <option value="$PROJECT_DIR$/public/index.php" />
         <option value="$PROJECT_DIR$/src/User/LoginService.php" />
         <option value="$PROJECT_DIR$/src/Core/Container.php" />
-        <option value="$PROJECT_DIR$/src/Core/PaginationService.php" />
-        <option value="$PROJECT_DIR$/src/User/AdminController.php" />
         <option value="$PROJECT_DIR$/views/User/addEntry.php" />
         <option value="$PROJECT_DIR$/random.php" />
         <option value="$PROJECT_DIR$/views/User/editEntry.php" />
         <option value="$PROJECT_DIR$/src/User/UserRepository.php" />
-        <option value="$PROJECT_DIR$/src/Entry/EntryRepository.php" />
+        <option value="$PROJECT_DIR$/src/User/AdminController.php" />
+        <option value="$PROJECT_DIR$/src/Core/PaginationService.php" />
+        <option value="$PROJECT_DIR$/views/layout/pagination.php" />
         <option value="$PROJECT_DIR$/src/Entry/EntryController.php" />
+        <option value="$PROJECT_DIR$/src/Entry/EntryRepository.php" />
+        <option value="$PROJECT_DIR$/views/layout/authorSearch.php" />
       </list>
     </option>
   </component>
@@ -182,7 +222,18 @@
               <item name="myBlog" type="b2602c69:ProjectViewProjectNode" />
               <item name="myBlog" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Entry" type="462c0819:PsiDirectoryNode" />
+              <item name="Core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="myBlog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="myBlog" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="myBlog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="myBlog" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="layout" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -274,7 +325,7 @@
       <workItem from="1553502138973" duration="17414000" />
       <workItem from="1553588449731" duration="24294000" />
       <workItem from="1553675087686" duration="20325000" />
-      <workItem from="1553760881173" duration="4563000" />
+      <workItem from="1553760881173" duration="7316000" />
     </task>
     <task id="LOCAL-00001" summary="add user class model and repository">
       <created>1553163963361</created>
@@ -287,7 +338,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="304207000" />
+    <option name="totallyTimeSpent" value="306960000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -334,7 +385,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="add method to user repository, clean up abstract repository" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/editor.php" />
     <entry file="file://$PROJECT_DIR$/editpage.php" />
     <entry file="file://$PROJECT_DIR$/mysqlFunctions.php" />
     <entry file="file://$PROJECT_DIR$/index.php" />
@@ -563,31 +613,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/User/AdminController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
-          <folding>
-            <element signature="e#113#145#0#PHP" expanded="true" />
-            <element signature="e#1160#2279#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Core/PaginationService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="21" column="45" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
-          <folding>
-            <element signature="e#174#298#0#PHP" />
-            <element signature="e#408#516#0#PHP" />
-            <element signature="e#598#857#0#PHP" />
-            <element signature="e#867#1044#0#PHP" />
-            <element signature="e#964#1044#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/random.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -607,13 +632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/layout/pagination.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -641,10 +659,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/User/AdminController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="534">
+          <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+          <folding>
+            <element signature="e#113#145#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Core/PaginationService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+          <folding>
+            <element signature="e#174#298#0#PHP" />
+            <element signature="e#408#516#0#PHP" />
+            <element signature="e#598#857#0#PHP" />
+            <element signature="e#867#1044#0#PHP" />
+            <element signature="e#964#1044#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entry/EntryRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="156" column="28" selection-start-line="156" selection-start-column="28" selection-end-line="156" selection-end-column="28" />
+        <state relative-caret-position="519">
+          <caret line="160" column="50" lean-forward="true" selection-start-line="160" selection-start-column="50" selection-end-line="160" selection-end-column="50" />
           <folding>
             <element signature="e#113#145#0#PHP" expanded="true" />
             <element signature="e#226#309#0#PHP" />
@@ -660,17 +702,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/layout/pagination.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="26" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entry/EntryController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="62" column="1" lean-forward="true" selection-start-line="62" selection-start-column="1" selection-end-line="62" selection-end-column="1" />
+          <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
           <folding>
             <element signature="e#113#145#0#PHP" expanded="true" />
             <element signature="e#261#551#0#PHP" />
-            <element signature="e#557#1054#0#PHP" />
             <element signature="e#1060#1392#0#PHP" />
             <element signature="e#1398#1608#0#PHP" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/layout/authorSearch.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="90" selection-start-line="5" selection-start-column="90" selection-end-line="5" selection-end-column="90" />
         </state>
       </provider>
     </entry>
