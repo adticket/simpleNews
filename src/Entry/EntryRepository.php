@@ -149,4 +149,15 @@ class EntryRepository extends AbstractRepository
             return $stmt->fetchAll(PDO::FETCH_CLASS, $this->getModelName());
         }
     }
+
+    public function getAuthors()
+    {
+        $table = $this->getTableName();
+        $stmt = $this->pdo->prepare("
+            SELECT DISTINCT author 
+            FROM {$table}
+        ");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::PARAM_STR);
+    }
 }
