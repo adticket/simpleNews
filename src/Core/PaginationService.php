@@ -26,6 +26,7 @@ class PaginationService
             'currentPage' => null,
             'entries' => null
         ];
+
         $numEntries = $this->entryRepository->getEntryAmount($author);
 
         if($numEntries > ($this->entriesPerPage))
