@@ -11,12 +11,14 @@ namespace App\User;
 
 use App\Core\AbstractController;
 use App\Core\PaginationService;
-use App\Entry\EntryController;
 use App\Entry\EntryModel;
 use App\Entry\EntryRepository;
 
 class AdminController extends AbstractController
 {
+    /*
+     *  -
+     */
     public function __construct(EntryRepository $entryRepository, LoginService $loginService, PaginationService $paginationService)
     {
         $this->entryRepository = $entryRepository;
@@ -24,17 +26,34 @@ class AdminController extends AbstractController
         $this->paginationService = $paginationService;
     }
 
+    /*
+     *  - checks if logged in
+     *  - inserts entry if submitted by post
+     *  - renders dashboard page with all user entries
+     */
     public function showUserEntries()
     {
+        /*
+         * checks if user is logged in else redirect him to login page
+         */
         $this->loginService->check();
 
+        /*
+         * checks if content was submitted
+         */
         if(isset($_POST['entrytitle']) && isset($_POST['blogcontent']))
         {
             $this->entryRepository->insertEntry($_POST['entrytitle'], $_POST['blogcontent'], $_SESSION['login']);
         }
 
+        /*
+         * get pagination and entries
+         */
         $pagination = $this->paginationService->getPagination($_SESSION['login']);
 
+        /*
+         *  render navigation, pagination and entries
+         */
         $this->render("layout/header", [
             'navigation' => $this->loginService->getNavigation()
         ]);
@@ -55,6 +74,12 @@ class AdminController extends AbstractController
         }
     }
 
+    /*
+     *  - checks if logged in
+     *  - checks if entry got updated by post
+     *  - retrieves entry by id
+     *  - renders page with form
+     */
     public function editEntry()
     {
         $this->loginService->check();
@@ -92,6 +117,10 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /*
+     *  - checks if logged in
+     *  - renders form to create new entry
+     */
     public function addEntry()
     {
         $this->loginService->check();
@@ -102,5 +131,19 @@ class AdminController extends AbstractController
         $this->render("User/addEntry", [
 
         ]);
+    }
+
+    /*
+     *  - checks if logged in
+     *  - renders dashboard view
+     */
+    public function dashboard()
+    {
+        $this->loginService->check();
+
+        $this->render("layout/header", [
+            'navigation' => $this->loginService->getNavigation()
+        ]);
+        $this->render("User/dashboard", []);
     }
 }

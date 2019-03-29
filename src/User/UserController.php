@@ -17,6 +17,12 @@ class UserController extends AbstractController
         $this->loginService = $loginService;
     }
 
+    /*
+     *  - escaping login input
+     *  - try to login
+     *  - if it fails return error
+     *  - render login page view
+     */
     public function login()
     {
         $error = false;
@@ -46,12 +52,20 @@ class UserController extends AbstractController
         ]);
     }
 
+    /*
+     *  - calls loginService to logout
+     *  - redirects to login page view
+     */
     public function logout()
     {
         $this->loginService->logout();
         header("Location: login");
     }
 
+    /*
+     *  - calls loginService register method
+     *  - renders register page view
+     */
     public function register()
     {
         $errors = $this->loginService->register();
@@ -62,15 +76,5 @@ class UserController extends AbstractController
         $this->render('User/register',[
             'errors' => $errors
         ]);
-    }
-
-    public function dashboard()
-    {
-        $this->loginService->check();
-
-        $this->render("layout/header", [
-            'navigation' => $this->loginService->getNavigation()
-        ]);
-        $this->render("User/dashboard", []);
     }
 }

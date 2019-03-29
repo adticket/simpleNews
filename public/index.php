@@ -58,7 +58,7 @@ $routes = [
         'method' => 'register'
     ],
     '/dashboard' => [
-        'controller' => 'userController',
+        'controller' => 'adminController',
         'method' => 'dashboard'
     ],
     '/logout' => [

@@ -12,10 +12,33 @@ use App\Core\AbstractModel;
 
 class UserModel extends AbstractModel
 {
+    /*
+     *  primary key user identification number
+     */
     public $userID;
+
+    /*
+     *  username unique
+     */
     public $username;
+
+    /*
+     *  password stored as hash
+     */
     public $password;
+
+    /*
+     *  users firstname
+     */
     public $firstname;
+
+    /*
+     *  users surname
+     */
     public $surname;
+
+    /*
+     *  users email address
+     */
     public $email;
 }

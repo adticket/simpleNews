@@ -8,6 +8,8 @@
 
 namespace App\User;
 
+use Exception;
+
 
 class LoginService
 {
@@ -16,6 +18,12 @@ class LoginService
         $this->userRepository = $userRepository;
     }
 
+    /*
+     *  - checks if login is username or mail adress
+     *  - tries to login
+     *  - if successful sets login and regenerates session id
+     *  - error displays error message on page
+     */
     public function attempt($login, $password)
     {
         if(filter_var($login, FILTER_VALIDATE_EMAIL))
@@ -50,12 +58,20 @@ class LoginService
         return false;
     }
 
+    /*
+     *  - unset login
+     *  - regenerate session id
+     */
     public function logout()
     {
         unset($_SESSION['login']);
         session_regenerate_id(true);
     }
 
+    /*
+     *  - checks if login is set
+     *  - if not method dies redirecting to login page
+     */
     public function check()
     {
         if(isset($_SESSION['login']))
@@ -69,6 +85,10 @@ class LoginService
         }
     }
 
+    /*
+     *  - if received information by post escape and validate input
+     *  - if validate input create user else return error messages
+     */
     public function register()
     {
         if(!empty($_POST))
@@ -105,7 +125,7 @@ class LoginService
                 try {
                     $this->userRepository->addUser($username, $firstname, $surname, $passwordhash, $email);
                     return null;
-                } catch (\Exception $exception) {
+                } catch (Exception $exception) {
                     $errors[] = "Account konnte nicht erstellt werden";
                 }
             }
@@ -114,6 +134,9 @@ class LoginService
         }
     }
 
+    /*
+     *  - returns navigation depending if logged in or not
+     */
     public function getNavigation()
     {
         if(isset($_SESSION['login']))
