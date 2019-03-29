@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ea9b572-5593-4c4d-9479-f9743e16b9f1" name="Default Changelist" comment="add method to user repository, clean up abstract repository">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="4ea9b572-5593-4c4d-9479-f9743e16b9f1" name="Default Changelist" comment="add method to user repository, clean up abstract repository" />
     <manually-removed-from-ignored>
       <directory path="V1/" />
     </manually-removed-from-ignored>
@@ -15,51 +13,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Core/AbstractController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/User/UserRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-              <folding>
-                <element signature="e#112#144#0#PHP" expanded="true" />
-                <element signature="e#259#325#0#PHP" />
-                <element signature="e#386#467#0#PHP" />
-                <element signature="e#538#976#0#PHP" />
-                <element signature="e#1044#1430#0#PHP" />
-                <element signature="e#1539#2172#0#PHP" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/User/UserModel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/User/UserController.php">
+        <entry file="file://$PROJECT_DIR$/src/Entry/EntryController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+            <state relative-caret-position="135">
+              <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
               <folding>
-                <element signature="e#200#313#0#PHP" />
-                <element signature="e#456#1146#0#PHP" />
-                <element signature="e#1245#1355#0#PHP" />
-                <element signature="e#1458#1750#0#PHP" />
+                <element signature="e#113#145#0#PHP" expanded="true" />
+                <element signature="e#261#551#0#PHP" />
+                <element signature="e#684#2058#0#PHP" />
+                <element signature="e#2158#2490#0#PHP" />
               </folding>
             </state>
           </provider>
@@ -163,7 +126,18 @@
             <path>
               <item name="myBlog" type="b2602c69:ProjectViewProjectNode" />
               <item name="myBlog" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="myBlog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="myBlog" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="myBlog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="myBlog" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Entry" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="myBlog" type="b2602c69:ProjectViewProjectNode" />
@@ -276,7 +250,7 @@
       <workItem from="1553850378372" duration="49000" />
       <workItem from="1553850447709" duration="11295000" />
       <workItem from="1553862043178" duration="267000" />
-      <workItem from="1553862324447" duration="83000" />
+      <workItem from="1553862324447" duration="194000" />
     </task>
     <task id="LOCAL-00001" summary="add user class model and repository">
       <created>1553163963361</created>
@@ -289,7 +263,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="332379000" />
+    <option name="totallyTimeSpent" value="332490000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -594,17 +568,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entry/EntryController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
-          <folding>
-            <element signature="e#113#145#0#PHP" expanded="true" />
-            <element signature="e#261#551#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entry/EntryModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -625,17 +588,6 @@
             <element signature="e#3654#4062#0#PHP" />
             <element signature="e#3138#3494#0#PHP" />
             <element signature="e#3358#3494#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="60" column="35" selection-start-line="60" selection-start-column="35" selection-end-line="60" selection-end-column="35" />
-          <folding>
-            <element signature="e#1624#1967#0#PHP" />
-            <element signature="e#1809#1967#0#PHP" />
           </folding>
         </state>
       </provider>
@@ -669,10 +621,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Core/AbstractController.php">
+    <entry file="file://$PROJECT_DIR$/public/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+        <state relative-caret-position="495">
+          <caret line="59" column="21" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
+          <folding>
+            <element signature="e#381#491#0#PHP" />
+            <element signature="e#457#491#0#PHP" />
+            <element signature="e#620#698#1#PHP" />
+            <element signature="e#716#800#1#PHP" />
+            <element signature="e#821#902#1#PHP" />
+            <element signature="e#920#997#1#PHP" />
+            <element signature="e#1018#1098#1#PHP" />
+            <element signature="e#1120#1202#1#PHP" />
+            <element signature="e#1221#1299#1#PHP" />
+            <element signature="e#1323#1411#1#PHP" />
+            <element signature="e#1433#1515#1#PHP" />
+            <element signature="e#1625#1968#0#PHP" />
+            <element signature="e#1810#1968#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/User/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+          <folding>
+            <element signature="e#200#313#0#PHP" />
+            <element signature="e#456#1146#0#PHP" />
+            <element signature="e#1245#1355#0#PHP" />
+            <element signature="e#1458#1750#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/User/UserModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -691,22 +678,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/User/UserModel.php">
+    <entry file="file://$PROJECT_DIR$/src/Core/AbstractController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+        <state relative-caret-position="255">
+          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/User/UserController.php">
+    <entry file="file://$PROJECT_DIR$/src/Entry/EntryController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+        <state relative-caret-position="135">
+          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
           <folding>
-            <element signature="e#200#313#0#PHP" />
-            <element signature="e#456#1146#0#PHP" />
-            <element signature="e#1245#1355#0#PHP" />
-            <element signature="e#1458#1750#0#PHP" />
+            <element signature="e#113#145#0#PHP" expanded="true" />
+            <element signature="e#261#551#0#PHP" />
+            <element signature="e#684#2058#0#PHP" />
+            <element signature="e#2158#2490#0#PHP" />
           </folding>
         </state>
       </provider>

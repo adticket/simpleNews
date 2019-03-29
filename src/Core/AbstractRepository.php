@@ -25,15 +25,4 @@ abstract class AbstractRepository
 
     abstract function getTableName();
     abstract function getModelName();
-    /*
-    function all()
-    {
-        $table = $this->getTableName();
-        $model = $this->getModelName();
-        $stmt = $this->pdo->query("SELECT * FROM {$table}");
-        $entries = $stmt->fetchAll(PDO::FETCH_CLASS, $model);
-
-        return $entries;
-    }
-    */
 }
