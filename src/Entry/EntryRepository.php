@@ -10,20 +10,30 @@ namespace App\Entry;
 
 use App\Core\AbstractRepository;
 use PDO;
-use Exception;
 
 class EntryRepository extends AbstractRepository
 {
+    /*
+     * returns name of model for methods
+     */
     public function getModelName()
     {
         return 'App\\Entry\\EntryModel';
     }
 
+    /*
+     * returns table name of db
+     */
     public function getTableName()
     {
         return 'BlogEntries';
     }
 
+    /*
+     *  - escapes user input
+     *  - create date and time of entry and assign format
+     *  - prepares statement, binds param, and executes it
+     */
     public function insertEntry($title, $content, $author)
     {
         $content = e($content);
@@ -42,6 +52,9 @@ class EntryRepository extends AbstractRepository
         $stmt->execute();
     }
 
+    /*
+     *  - retrieves one entry from db by its id
+     */
     function findById($id)
     {
         $table = $this->getTableName();
@@ -55,6 +68,10 @@ class EntryRepository extends AbstractRepository
         return $entry;
     }
 
+    /*
+     *  - retrieve entry by its id and author
+     *  - necessary for editing entries
+     */
     function findByIdAndAuthor($id, $author)
     {
         $table = $this->getTableName();
@@ -69,6 +86,9 @@ class EntryRepository extends AbstractRepository
         return $entry;
     }
 
+    /*
+     *  - delete entry from db
+     */
     function deleteById(EntryModel $entry)
     {
         $table = $this->getTableName();
@@ -77,6 +97,9 @@ class EntryRepository extends AbstractRepository
         $stmt->execute();
     }
 
+    /*
+     *
+     */
     function updateEntry(EntryModel $entry)
     {
         $table = $this->getTableName();
@@ -91,47 +114,63 @@ class EntryRepository extends AbstractRepository
         $stmt->execute();
     }
 
+    /*
+     *  - get amount of entries by author
+     *  - default parameter returns number of all entries
+     */
     public function getEntryAmount($author="")
     {
         if(empty($author))
         {
             $stmt = $this->pdo->prepare("SELECT * FROM BlogEntries");
-            $stmt->execute();
-            return $stmt->rowCount();
         }
         else
         {
             $stmt = $this->pdo->prepare("SELECT * FROM BlogEntries WHERE author = :author");
             $stmt->bindParam(':author', $author, PDO::PARAM_STR);
-            $stmt->execute();
-            return $stmt->rowCount();
         }
+        $stmt->execute();
+        return $stmt->rowCount();
     }
 
+    /*
+     *  - parameter: current page, entries per page, author (default empty)
+     *  -
+     */
     public function getEntriesOfPage($page, $entriesPerPage, $author="")
     {
+        /*
+         * if page empty set page 1
+         */
         if(empty($page))
         {
             $page=1;
         }
+
+        /*
+         * calculate offset for entries to retrieve
+         */
         $offset = ($page-1)*$entriesPerPage;
+
+        /*
+         * get model and table for entries
+         */
         $model = $this->getModelName();
         $table = $this->getTableName();
 
-
+        /*
+         *  - if author empty return entries of all authors
+         */
         if(empty($author))
         {
             $stmt = $this->pdo->prepare("
-                                        SELECT * 
-                                        FROM {$table} 
-                                        ORDER BY dateofentry DESC 
-                                        LIMIT :firstEntry,:entriesPerPage
+                SELECT * 
+                FROM {$table} 
+                ORDER BY dateofentry DESC 
+                LIMIT :firstEntry,:entriesPerPage
             ");
             $stmt->bindParam(':firstEntry', $offset, PDO::PARAM_INT);
             $stmt->bindParam(':entriesPerPage', $entriesPerPage, PDO::PARAM_INT);
-            $stmt->execute();
-            $entries = $stmt->fetchAll(PDO::FETCH_CLASS, $model);
-            return $entries;
         }
         else
         {
@@ -145,11 +184,14 @@ class EntryRepository extends AbstractRepository
             $stmt->bindParam(':author', $author, PDO::PARAM_STR_NATL);
             $stmt->bindParam(':firstEntry', $offset, PDO::PARAM_INT);
             $stmt->bindParam(':entriesPerPage', $entriesPerPage, PDO::PARAM_INT);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_CLASS, $this->getModelName());
         }
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_CLASS, $model);
     }
 
+    /*
+     *  - returns array with all authors
+     */
     public function getAuthors()
     {
         $table = $this->getTableName();

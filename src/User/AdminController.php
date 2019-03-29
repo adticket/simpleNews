@@ -11,6 +11,7 @@ namespace App\User;
 
 use App\Core\AbstractController;
 use App\Core\PaginationService;
+use App\Entry\EntryController;
 use App\Entry\EntryModel;
 use App\Entry\EntryRepository;
 
@@ -88,6 +89,18 @@ class AdminController extends AbstractController
         $this->render("User/editEntry", [
             'entry' => $entry,
             'error' => $error
+        ]);
+    }
+
+    public function addEntry()
+    {
+        $this->loginService->check();
+
+        $this->render("layout/header", [
+            'navigation' => $this->loginService->getNavigation()
+        ]);
+        $this->render("User/addEntry", [
+
         ]);
     }
 }

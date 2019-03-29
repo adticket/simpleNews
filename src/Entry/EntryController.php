@@ -21,8 +21,15 @@ class EntryController extends AbstractController
         $this->paginationService = $paginationService;
     }
 
+    /*
+     *  - retrieve all necessary data
+     *  - calls render function for pagination and entries and navigation
+     */
     public function index()
     {
+        /*
+         * find if filter is set
+         */
         if(isset($_GET['author']))
         {
             $author = $_GET['author'];
@@ -32,12 +39,26 @@ class EntryController extends AbstractController
             $author = "";
         }
 
+        /*
+         * get pagination containing entries filtered by page and author
+         */
         $pagination = $this->paginationService->getPagination($author);
+
+        /*
+         * get all authors for filter
+         */
         $authors = $this->entryRepository->getAuthors();
 
+        /*
+         * call render function for navigation bar
+         */
         $this->render("layout/header", [
             'navigation' => $this->loginService->getNavigation()
         ]);
+
+        /*
+         * call render function for pagination if there is more than one page
+         */
         if($pagination['numPages']>1)
         {
             $this->render("layout/pagination", [
@@ -58,6 +79,10 @@ class EntryController extends AbstractController
         }
     }
 
+    /*
+     *  - retrieve entry id from url
+     *  - call render function with entry
+     */
     public function singleEntry()
     {
         $id = $_GET['eid'];
@@ -67,16 +92,6 @@ class EntryController extends AbstractController
         ]);
         $this->render("Entries/singleEntry", [
             'entry' => $entry
-        ]);
-    }
-
-    public function addEntry()
-    {
-        $this->render("layout/header", [
-            'navigation' => $this->loginService->getNavigation()
-        ]);
-        $this->render("User/addEntry", [
-
         ]);
     }
 }

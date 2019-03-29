@@ -46,7 +46,7 @@ $routes = [
         'method' => 'singleEntry'
     ],
     '/addEntry' => [
-        'controller' => 'entryController',
+        'controller' => 'adminController',
         'method' => 'addEntry'
     ],
     '/login' => [
@@ -81,6 +81,7 @@ $routes = [
  *  - call method
  * else:
  *  - route is set to index
+ *
  */
 if(isset($routes[$pathInfo]))
 {
