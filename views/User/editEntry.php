@@ -13,7 +13,7 @@
 <div class="container">
     <form method="post" action="editEntry?eid=<?php echo $entry['entryID']; ?>">
         <div class="form-group">
-            <input type="text" class="form-control" name="blogtitle" value="<?php echo $entry['blogtitle'] ?>"required/>
+            <input type="text" class="form-control" name="blogtitle" value="<?php echo $entry['blogtitle'] ?>"/>
         </div>
         <div class="form-group">
             <textarea class="form-control" name="blogcontent" rows="10"><?php echo $entry['blogcontent']; ?></textarea>

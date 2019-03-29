@@ -96,10 +96,22 @@ class AdminController extends AbstractController
 
         if($entry->entryID != null)
         {
-            if (isset($_POST['update']) && !empty($_POST['blogcontent']) && !empty($_POST['blogtitle'])) {
-                $entry->blogtitle = e($_POST['blogtitle']);
-                $entry->blogcontent = e($_POST['blogcontent']);
-                $this->entryRepository->updateEntry($entry);
+            if (isset($_POST['update']))
+            {
+                $content = trim($_POST['blogcontent']);
+                $title = trim($_POST['blogtitle']);
+
+                if(!empty($content) && !empty($title))
+                {
+                    $entry->blogtitle = e($_POST['blogtitle']);
+                    $entry->blogcontent = e($_POST['blogcontent']);
+                    $this->entryRepository->updateEntry($entry);
+                }
+                else
+                {
+                    $error = "Der Eintrag darf nicht leer sein.";
+                }
+
             }
             if (isset($_POST['delete'])) {
                 $this->entryRepository->deleteById($entry);
