@@ -28,7 +28,7 @@ class EntryController extends AbstractController
     public function index()
     {
         /*
-         * find if filter is set
+         *  find if filter is set
          */
         if(isset($_GET['author']))
         {
@@ -40,29 +40,34 @@ class EntryController extends AbstractController
         }
 
         /*
-         * get pagination containing entries filtered by page and author
+         *  get pagination containing entries filtered by page and author
          */
         $pagination = $this->paginationService->getPagination($author);
 
         /*
-         * get all authors for filter
+         *  get all authors for filter
          */
         $authors = $this->entryRepository->getAuthors();
 
         /*
-         * call render function for navigation bar
+         *  get all elements for pagination
+         */
+        $paginationElements = $this->paginationService->getPaginationElements($pagination['numPages']);
+
+        /*
+         *  call render function for navigation bar
          */
         $this->render("layout/header", [
             'navigation' => $this->loginService->getNavigation()
         ]);
 
         /*
-         * call render function for pagination if there is more than one page
+         *  call render function for pagination if there is more than one page
          */
         if($pagination['numPages']>1)
         {
             $this->render("layout/pagination", [
-                'numPages' => $pagination['numPages']
+                'paginationElements' => $paginationElements
             ]);
         }
         $this->render("layout/authorSearch",[
@@ -74,7 +79,7 @@ class EntryController extends AbstractController
         if($pagination['numPages']>1)
         {
             $this->render("layout/pagination", [
-                'numPages' => $pagination['numPages']
+                'paginationElements' => $paginationElements
             ]);
         }
     }

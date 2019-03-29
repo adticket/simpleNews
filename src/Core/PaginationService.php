@@ -82,4 +82,33 @@ class PaginationService
 
         return $pagination;
     }
+
+    public function getPaginationElements($numPages)
+    {
+        $links = [];
+
+        for($x=1; $x<=$numPages; $x++)
+        {
+            $link = [];
+
+            $link[] = '<li class="page-item';
+
+            if (isset($_GET['page']) && $x == $_GET['page'] || (!isset($_GET['page']) && $x == 1)) {
+                $link[] = ' active">';
+            } else {
+                $link[] = '">';
+            }
+
+            if (isset($_GET['author'])) {
+                $link[] = '<a class="page-link" href="?author=' . $_GET['author'] . '&page=' . $x . '">' . $x . '</a>';
+            } else {
+                $link[] = '<a class="page-link" href="?page=' . $x . '">' . $x . '</a>';
+            }
+
+            $link[] = '</li>';
+
+            $links[] = implode("", $link);
+        }
+        return $links;
+    }
 }

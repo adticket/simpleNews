@@ -52,6 +52,11 @@ class AdminController extends AbstractController
         $pagination = $this->paginationService->getPagination($_SESSION['login']);
 
         /*
+         *  get all elements for pagination
+         */
+        $paginationElements = $this->paginationService->getPaginationElements($pagination['numPages']);
+
+        /*
          *  render navigation, pagination and entries
          */
         $this->render("layout/header", [
@@ -60,7 +65,7 @@ class AdminController extends AbstractController
         if($pagination['numPages']>1)
         {
             $this->render("layout/pagination", [
-                'numPages' => $pagination['numPages']
+                'paginationElements' => $paginationElements
             ]);
         }
         $this->render("User/userEntries", [
@@ -69,7 +74,7 @@ class AdminController extends AbstractController
         if($pagination['numPages']>1)
         {
             $this->render("layout/pagination", [
-                'numPages' => $pagination['numPages']
+                'paginationElements' => $paginationElements
             ]);
         }
     }
