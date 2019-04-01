@@ -70,12 +70,24 @@ class EntryController extends AbstractController
                 'paginationElements' => $paginationElements
             ]);
         }
+
+        /*
+         *  render filter option
+         */
         $this->render("layout/authorSearch",[
             'authors' => $authors
         ]);
+
+        /*
+         *  render entries
+         */
         $this->render("Entries/index", [
             'entries' => $pagination['entries']
         ]);
+
+        /*
+         *  render pagination on bottom of site
+         */
         if($pagination['numPages']>1)
         {
             $this->render("layout/pagination", [

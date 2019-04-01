@@ -7,7 +7,7 @@
 <body>
 <div class="container">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <div class="navbar-brand mb-0">PP-1.1</div>
+        <div class="navbar-brand mb-0">P-1.1</div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mynav">
             <span class="navbar-toggler-icon"></span>
         </button>
