@@ -13,6 +13,9 @@
         </ul>
     </div>
     <br />
+
+    <a href="index?page=<?php echo $_GET['page']; ?>" class="btn btn-primary">Zurück</a>
+
 </div>
 
 <?php include_once __DIR__ . "/../layout/footer.php"; ?>

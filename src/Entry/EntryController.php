@@ -32,7 +32,7 @@ class EntryController extends AbstractController
          */
         if(isset($_GET['author']))
         {
-            $author = $_GET['author'];
+            $author = e($_GET['author']);
         }
         else
         {
