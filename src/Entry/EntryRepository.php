@@ -63,7 +63,7 @@ class EntryRepository extends AbstractRepository
         $stmt->bindParam(':eid', $id, PDO::PARAM_INT);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, $model);
-        $entry = $stmt->fetch(8);
+        $entry = $stmt->fetch();
 
         return $entry;
     }
@@ -169,8 +169,6 @@ class EntryRepository extends AbstractRepository
                 ORDER BY dateofentry DESC 
                 LIMIT :firstEntry,:entriesPerPage
             ");
-            $stmt->bindParam(':firstEntry', $offset, PDO::PARAM_INT);
-            $stmt->bindParam(':entriesPerPage', $entriesPerPage, PDO::PARAM_INT);
         }
         else
         {
@@ -182,10 +180,14 @@ class EntryRepository extends AbstractRepository
                                           LIMIT :firstEntry,:entriesPerPage
             ");
             $stmt->bindParam(':author', $author, PDO::PARAM_STR_NATL);
-            $stmt->bindParam(':firstEntry', $offset, PDO::PARAM_INT);
-            $stmt->bindParam(':entriesPerPage', $entriesPerPage, PDO::PARAM_INT);
+
         }
+
+        $stmt->bindParam(':firstEntry', $offset, PDO::PARAM_INT);
+        $stmt->bindParam(':entriesPerPage', $entriesPerPage, PDO::PARAM_INT);
+
         $stmt->execute();
+
         return $stmt->fetchAll(PDO::FETCH_CLASS, $model);
     }
 
