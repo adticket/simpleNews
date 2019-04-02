@@ -14,7 +14,7 @@ $mysql =  createMysqlConnection();
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $datetime = new \DateTime();
     $datetime = $datetime->format('Y-m-d H:i:s');
-    insertEntry($mysql, e($_POST['entrytitle']), e($_POST['blogcontent']), $_SESSION['username']);
+    insertEntry($mysql, $_POST['entrytitle'], $_POST['blogcontent'], $_SESSION['username']);
 }
 
 $mysql->close();

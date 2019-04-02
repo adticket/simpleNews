@@ -52,7 +52,7 @@ class PaginationService
         if($numEntries > ($this->entriesPerPage))
         {
             $pagination['numPages'] = $numEntries/$this->entriesPerPage;
-            if(($numEntries%$this->entriesPerPage)>0)
+            if(($numEntries % $this->entriesPerPage) > 0)
             {
                 $pagination['numPages']++;
             }
@@ -60,7 +60,7 @@ class PaginationService
 
         /*
          * get current page by url
-         *  - if not set page 1 is set
+         *  - if not set, page 1 is set
          */
         if(empty($_GET['page']))
         {

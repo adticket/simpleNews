@@ -47,9 +47,4 @@ function getEntries($connection){
 function getEntriesByAuthor($connection, $author){
     return $connection->query("SELECT * FROM BlogEntries WHERE author='$author'");
 }
-
-function e($string)
-{
-    return htmlentities($string, ENT_QUOTES, 'UTF-8');
-}
 ?>
