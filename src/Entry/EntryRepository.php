@@ -158,9 +158,10 @@ class EntryRepository extends AbstractRepository
         $model = $this->getModelName();
         $table = $this->getTableName();
 
+        //  Old query
         /*
          *  - if author empty return entries of all authors
-         */
+         *
         if(empty($author))
         {
             $stmt = $this->pdo->prepare("
@@ -181,10 +182,30 @@ class EntryRepository extends AbstractRepository
             ");
             $stmt->bindParam(':author', $author, PDO::PARAM_STR_NATL);
 
+        }*/
+
+        /*
+         *  New query -> less code
+         */
+        $stmt = $this->pdo->prepare("
+            SELECT *
+            FROM {$table}
+            WHERE author
+            LIKE :author
+            ORDER BY dateofentry DESC 
+            LIMIT :firstEntry,:entriesPerPage
+        ");
+
+        if(empty($author))
+        {
+            $author = "%";
         }
 
+        $stmt->bindParam(':author', $author, PDO::PARAM_STR);
         $stmt->bindParam(':firstEntry', $offset, PDO::PARAM_INT);
         $stmt->bindParam(':entriesPerPage', $entriesPerPage, PDO::PARAM_INT);
+
+        var_dump($stmt);
 
         $stmt->execute();
 
