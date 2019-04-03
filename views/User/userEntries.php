@@ -20,8 +20,8 @@
     <?php endforeach; ?>
 </div>
 <?php else: ?>
-<div class="container h5">
-    Keine Einträge verfügbar. <a class="" href="dashboard">Zurück zum Dashboard</a>
+<div class="container h5 text-center">
+    Keine Einträge verfügbar.
 </div>
 <?php endif; ?>
 
