@@ -155,7 +155,7 @@ class LoginService
                 'login' => 'Login'
             ];
         }*/
-        if(isset($_SESSION['login']))
+        if($this->check())
         {
             $navigation = '
             <li class="nav-item">
@@ -178,7 +178,7 @@ class LoginService
         else
         {
             $navigation = '
-            <li class="nav-item">
+            <li>
                     <a class="nav-link" href="index">Startseite</a>
             </li>
             <li class="nav-item">

@@ -21,7 +21,37 @@
         <div class="form-group">
             <input type="submit" class="btn btn-primary col-sm-3" name="update" value="Änderung speichern">
             <input type="submit" class="btn btn-secondary col-sm-3" name="discard" value="Änderung verwerfen">
-            <input type="submit" class="btn btn-danger col-sm-3 float-right" name="delete" value="Eintrag löschen">
+            <button type="button" class="btn btn-danger col-sm-3 float-right" data-toggle="modal" data-target="#deleteModal">
+                Eintrag löschen
+            </button>
         </div>
     </form>
+</div>
+
+
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">
+                    Eintrag löschen
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Wollen Sie diesen Eintrag wirklich löschen?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger">
+                    Eintrag löschen
+                </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Abbrechen
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
