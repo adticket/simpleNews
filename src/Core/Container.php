@@ -45,7 +45,7 @@ class Container
                 }
                 catch(PDOException $e)
                 {
-                    echo "Verbindung zur Datenbank fehlgeschlagen";
+                    echo "Verbindung zur Datenbank fehlgeschlagen!<br />Bitte kontaktieren Sie mich!";
                     die;
                 }
                 return $pdo;
@@ -82,9 +82,10 @@ class Container
     }
 
     /*
-     * checks if instances already exists in $instances[]
+     * checks if instance($name) already exists in $instances[]
      *  - returns it if it exists
      *  - else creates it after recipe[]
+     *  - only one object of each class will exist
      */
     function make($name)
     {
@@ -97,5 +98,6 @@ class Container
             $this->instances[$name] = $this->recipe[$name]();
         }
         return $this->instances[$name];
+
     }
 }
