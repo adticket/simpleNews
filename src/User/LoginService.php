@@ -139,6 +139,7 @@ class LoginService
      */
     public function getNavigation()
     {
+        /*
         if(isset($_SESSION['login']))
         {
             return [
@@ -153,6 +154,39 @@ class LoginService
                 'index' => 'Startseite',
                 'login' => 'Login'
             ];
+        }*/
+        if(isset($_SESSION['login']))
+        {
+            $navigation = '
+            <li class="nav-item">
+                    <a class="nav-link" href="index">Startseite</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dashboard
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="userEntries">Meine Beiträge</a>
+                    <a class="dropdown-item" href="addEntry">Beitrag verfassen</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                    <a class="nav-link" href="logout">Logout</a>
+            </li>
+            ';
         }
+        else
+        {
+            $navigation = '
+            <li class="nav-item">
+                    <a class="nav-link" href="index">Startseite</a>
+            </li>
+            <li class="nav-item">
+                    <a class="nav-link" href="login">Login</a>
+            </li>
+            ';
+        }
+
+        return $navigation;
     }
 }

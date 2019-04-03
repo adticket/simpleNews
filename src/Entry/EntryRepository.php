@@ -193,7 +193,7 @@ class EntryRepository extends AbstractRepository
             WHERE author
             LIKE :author
             ORDER BY dateofentry DESC 
-            LIMIT :firstEntry,:entriesPerPage
+            LIMIT :firstEntry, :entriesPerPage
         ");
 
         if(empty($author))
@@ -204,8 +204,6 @@ class EntryRepository extends AbstractRepository
         $stmt->bindParam(':author', $author, PDO::PARAM_STR);
         $stmt->bindParam(':firstEntry', $offset, PDO::PARAM_INT);
         $stmt->bindParam(':entriesPerPage', $entriesPerPage, PDO::PARAM_INT);
-
-        var_dump($stmt);
 
         $stmt->execute();
 
