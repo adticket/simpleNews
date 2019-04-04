@@ -27,3 +27,6 @@
         </div>
     </form>
 </div>
+
+<?php require_once __DIR__ . "/../Modal/deleteEntryModal.php";
+
