@@ -16,7 +16,7 @@ class EntryRepository extends AbstractRepository
     /*
      * returns name of model for methods
      */
-    public function getModelName()
+    public function getModelName() : string
     {
         return 'App\\Entry\\EntryModel';
     }
@@ -24,7 +24,7 @@ class EntryRepository extends AbstractRepository
     /*
      * returns table name of db
      */
-    public function getTableName()
+    public function getTableName() : string
     {
         return 'BlogEntries';
     }
@@ -34,15 +34,16 @@ class EntryRepository extends AbstractRepository
      *  - create date and time of entry and assign format
      *  - prepares statement, binds param, and executes it
      */
-    public function insertEntry($title, $content, $author)
+    public function insertEntry($title, $content, $author) : void
     {
+        $table = $this->getTableName();
         $content = e($content);
         $title = e($title);
         $datetime = new \DateTime();
         $datetime = $datetime->format('Y-m-d H:i:s');
 
         $stmt = $this->pdo->prepare("
-            INSERT INTO BlogEntries (blogtitle, blogcontent, dateofentry, author) 
+            INSERT INTO {$table} (blogtitle, blogcontent, dateofentry, author) 
             VALUES (:bt, :bc, :doe, :a)"
         );
         $stmt->bindParam(':bt', $title, PDO::PARAM_STR);
@@ -55,41 +56,39 @@ class EntryRepository extends AbstractRepository
     /*
      *  - retrieves one entry from db by its id
      */
-    function findById($id)
+    public function findById($id)
     {
         $table = $this->getTableName();
         $model = $this->getModelName();
         $stmt = $this->pdo->prepare("SELECT * FROM {$table} WHERE entryID = :eid");
         $stmt->bindParam(':eid', $id, PDO::PARAM_INT);
-        $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, $model);
-        $entry = $stmt->fetch();
+        $stmt->execute();
 
-        return $entry;
+        return $stmt->fetch();
     }
 
     /*
      *  - retrieve entry by its id and author
      *  - necessary for editing entries
      */
-    function findByIdAndAuthor($id, $author)
+    public function findByIdAndAuthor($id, $author)
     {
         $table = $this->getTableName();
         $model = $this->getModelName();
         $stmt = $this->pdo->prepare("SELECT * FROM {$table} WHERE entryID = :eid AND author = :author");
         $stmt->bindParam(':eid', $id, PDO::PARAM_INT);
-        $stmt->bindParam(':author', $author, PDO::PARAM_STR);
-        $stmt->execute();
+        $stmt->bindParam(':author', $author);
         $stmt->setFetchMode(PDO::FETCH_CLASS, $model);
-        $entry = $stmt->fetch(8);
+        $stmt->execute();
 
-        return $entry;
+        return $stmt->fetch();
     }
 
     /*
      *  - delete entry from db
      */
-    function deleteById(EntryModel $entry)
+    public function deleteById(EntryModel $entry) : void
     {
         $table = $this->getTableName();
         $stmt = $this->pdo->prepare("DELETE FROM {$table} WHERE entryID = :eid");
@@ -100,7 +99,7 @@ class EntryRepository extends AbstractRepository
     /*
      *
      */
-    function updateEntry(EntryModel $entry)
+    public function updateEntry(EntryModel $entry) : void
     {
         $table = $this->getTableName();
         $stmt = $this->pdo->prepare("
@@ -108,8 +107,8 @@ class EntryRepository extends AbstractRepository
             SET blogtitle = :bt, blogcontent = :bc 
             WHERE entryID = :eid"
         );
-        $stmt->bindParam(':bt', $entry->blogtitle, PDO::PARAM_STR);
-        $stmt->bindParam(':bc', $entry->blogcontent, PDO::PARAM_STR);
+        $stmt->bindParam(':bt', $entry->blogtitle);
+        $stmt->bindParam(':bc', $entry->blogcontent);
         $stmt->bindParam(':eid', $entry->entryID, PDO::PARAM_INT);
         $stmt->execute();
     }
@@ -118,18 +117,21 @@ class EntryRepository extends AbstractRepository
      *  - get amount of entries by author
      *  - default parameter returns number of all entries
      */
-    public function getEntryAmount($author="")
+    public function getEntryAmount($author='') : int
     {
+        $table = $this->getTableName();
+
         if(empty($author))
         {
-            $stmt = $this->pdo->prepare("SELECT * FROM BlogEntries");
+            $stmt = $this->pdo->prepare("SELECT * FROM {$table}");
         }
         else
         {
-            $stmt = $this->pdo->prepare("SELECT * FROM BlogEntries WHERE author = :author");
-            $stmt->bindParam(':author', $author, PDO::PARAM_STR);
+            $stmt = $this->pdo->prepare("SELECT * FROM {$table} WHERE author = :author");
+            $stmt->bindParam(':author', $author);
         }
         $stmt->execute();
+
         return $stmt->rowCount();
     }
 
@@ -137,7 +139,7 @@ class EntryRepository extends AbstractRepository
      *  - parameter: current page, entries per page, author (default empty)
      *  -
      */
-    public function getEntriesOfPage($page, $entriesPerPage, $author="")
+    public function getEntriesOfPage($page, $entriesPerPage, $author='') : array
     {
         /*
          * if page empty set page 1
@@ -158,32 +160,6 @@ class EntryRepository extends AbstractRepository
         $model = $this->getModelName();
         $table = $this->getTableName();
 
-        //  Old query
-        /*
-         *  - if author empty return entries of all authors
-         *
-        if(empty($author))
-        {
-            $stmt = $this->pdo->prepare("
-                SELECT * 
-                FROM {$table} 
-                ORDER BY dateofentry DESC 
-                LIMIT :firstEntry,:entriesPerPage
-            ");
-        }
-        else
-        {
-            $stmt = $this->pdo->prepare("
-                                          SELECT * 
-                                          FROM {$table} 
-                                          WHERE author = :author 
-                                          ORDER BY dateofentry DESC 
-                                          LIMIT :firstEntry,:entriesPerPage
-            ");
-            $stmt->bindParam(':author', $author, PDO::PARAM_STR_NATL);
-
-        }*/
-
         /*
          *  New query -> less code
          */
@@ -198,10 +174,10 @@ class EntryRepository extends AbstractRepository
 
         if(empty($author))
         {
-            $author = "%";
+            $author = '%';
         }
 
-        $stmt->bindParam(':author', $author, PDO::PARAM_STR);
+        $stmt->bindParam(':author', $author);
         $stmt->bindParam(':firstEntry', $offset, PDO::PARAM_INT);
         $stmt->bindParam(':entriesPerPage', $entriesPerPage, PDO::PARAM_INT);
 
@@ -213,14 +189,16 @@ class EntryRepository extends AbstractRepository
     /*
      *  - returns array with all authors
      */
-    public function getAuthors()
+    public function getAuthors() : array
     {
         $table = $this->getTableName();
         $stmt = $this->pdo->prepare("
             SELECT DISTINCT author 
             FROM {$table}
         ");
+
         $stmt->execute();
+
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
 }
