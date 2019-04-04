@@ -7,10 +7,14 @@
                     echo $_GET['page'];
                 }
                 else
+                {
                     echo 1;
+                }
                 ?>&eid=<?php echo $entry['entryID'];
                 if(isset($_GET['author']))
-                    echo "&author=" . $_GET['author'];
+                {
+                    echo '&author=' . $_GET['author'];
+                }
                 ?>"
                class="text-dark font-weight-bold">
                    <?php echo nl2br($entry['blogtitle']); ?>
@@ -29,4 +33,4 @@
     <?php endforeach; ?>
 </div>
 
-<?php include_once __DIR__ . "/../layout/footer.php"; ?>
+<?php include_once __DIR__ . '/../layout/footer.php'; ?>
