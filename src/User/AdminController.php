@@ -31,7 +31,7 @@ class AdminController extends AbstractController
      *  - inserts entry if submitted by post
      *  - renders dashboard page with all user entries
      */
-    public function showUserEntries()
+    public function showUserEntries() : void
     {
         /*
          * checks if user is logged in else redirect him to login page
@@ -41,7 +41,7 @@ class AdminController extends AbstractController
         /*
          * checks if content was submitted
          */
-        if(isset($_POST['entrytitle']) && isset($_POST['blogcontent']))
+        if(isset($_POST['entrytitle'], $_POST['blogcontent']))
         {
             $this->entryRepository->insertEntry($_POST['entrytitle'], $_POST['blogcontent'], $_SESSION['login']);
         }
@@ -59,21 +59,21 @@ class AdminController extends AbstractController
         /*
          *  render navigation, pagination and entries
          */
-        $this->render("layout/header", [
+        $this->render('layout/header', [
             'navigation' => $this->loginService->getNavigation()
         ]);
         if($pagination['numPages']>1)
         {
-            $this->render("layout/pagination", [
+            $this->render('layout/pagination', [
                 'paginationElements' => $paginationElements
             ]);
         }
-        $this->render("User/userEntries", [
+        $this->render('User/userEntries', [
             'entries' => $pagination['entries']
         ]);
         if($pagination['numPages']>1)
         {
-            $this->render("layout/pagination", [
+            $this->render('layout/pagination', [
                 'paginationElements' => $paginationElements
             ]);
         }
@@ -85,7 +85,7 @@ class AdminController extends AbstractController
      *  - retrieves entry by id
      *  - renders page with form
      */
-    public function editEntry()
+    public function editEntry() : void
     {
         $this->loginService->check();
 
@@ -94,7 +94,7 @@ class AdminController extends AbstractController
         $entry = new EntryModel();
         $entry->entryID = e($_GET['eid']);
 
-        if($entry->entryID != null)
+        if($entry->entryID !== null)
         {
             if (isset($_POST['update']))
             {
@@ -109,26 +109,26 @@ class AdminController extends AbstractController
                 }
                 else
                 {
-                    $error = "Der Eintrag darf nicht leer sein.";
+                    $error = 'Der Eintrag darf nicht leer sein.';
                 }
 
             }
             if (isset($_POST['delete'])) {
                 $this->entryRepository->deleteById($entry);
-                header("Location: userEntries");
+                header('Location: userEntries');
             }
         }
         else
         {
-            $error = "Post nicht gefunden.";
+            $error = 'Post nicht gefunden.';
         }
 
         $entry = $this->entryRepository->findByIdAndAuthor($entry->entryID, $_SESSION['login']);
 
-        $this->render("layout/header", [
+        $this->render('layout/header', [
             'navigation' => $this->loginService->getNavigation()
         ]);
-        $this->render("User/editEntry", [
+        $this->render('User/editEntry', [
             'entry' => $entry,
             'error' => $error
         ]);
@@ -138,29 +138,14 @@ class AdminController extends AbstractController
      *  - checks if logged in
      *  - renders form to create new entry
      */
-    public function addEntry()
+    public function addEntry() : void
     {
         $this->loginService->check();
 
-        $this->render("layout/header", [
+        $this->render('layout/header', [
             'navigation' => $this->loginService->getNavigation()
         ]);
-        $this->render("User/addEntry", [
-
+        $this->render('User/addEntry', [
         ]);
-    }
-
-    /*
-     *  - checks if logged in
-     *  - renders dashboard view
-     */
-    public function dashboard()
-    {
-        $this->loginService->check();
-
-        $this->render("layout/header", [
-            'navigation' => $this->loginService->getNavigation()
-        ]);
-        $this->render("User/dashboard", []);
     }
 }

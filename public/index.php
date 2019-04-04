@@ -50,10 +50,6 @@ $routes = [
         'controller' => 'userController',
         'method' => 'register'
     ],
-    '/dashboard' => [
-        'controller' => 'adminController',
-        'method' => 'dashboard'
-    ],
     '/logout' => [
         'controller' => 'userController',
         'method' => 'logout'
