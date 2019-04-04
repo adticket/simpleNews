@@ -9,12 +9,12 @@
 namespace App\Core;
 
 use App\Entry\EntryController;
+use App\Entry\EntryRepository;
 use App\User\AdminController;
 use App\User\LoginService;
 use App\User\UserController;
 use App\User\UserRepository;
 use PDO;
-use App\Entry\EntryRepository;
 use PDOException;
 
 
@@ -26,12 +26,11 @@ class Container
      *          and calls make-method
      */
     private $instances = [];
-    private $recipe = [];
 
     /*
      * creates and object of every class by using make-method
      */
-    function __construct()
+    public function __construct()
     {
         $this->recipe = [
             'pdo' => function()
@@ -87,7 +86,7 @@ class Container
      *  - else creates it after recipe[]
      *  - only one object of each class will exist
      */
-    function make($name)
+    public function make($name)
     {
         if(!empty($this->instances[$name]))
         {
