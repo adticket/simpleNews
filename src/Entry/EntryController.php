@@ -25,7 +25,7 @@ class EntryController extends AbstractController
      *  - retrieve all necessary data
      *  - calls render function for pagination and entries and navigation
      */
-    public function index()
+    public function index() : void
     {
         /*
          *  find if filter is set
@@ -36,7 +36,7 @@ class EntryController extends AbstractController
         }
         else
         {
-            $author = "";
+            $author = '';
         }
 
         /*
@@ -57,7 +57,7 @@ class EntryController extends AbstractController
         /*
          *  call render function for navigation bar
          */
-        $this->render("layout/header", [
+        $this->render('layout/header', [
             'navigation' => $this->loginService->getNavigation()
         ]);
 
@@ -66,7 +66,7 @@ class EntryController extends AbstractController
          */
         if($pagination['numPages']>1)
         {
-            $this->render("layout/pagination", [
+            $this->render('layout/pagination', [
                 'paginationElements' => $paginationElements
             ]);
         }
@@ -74,14 +74,14 @@ class EntryController extends AbstractController
         /*
          *  render filter option
          */
-        $this->render("layout/authorSearch",[
+        $this->render('layout/authorSearch',[
             'authors' => $authors
         ]);
 
         /*
          *  render entries
          */
-        $this->render("Entries/index", [
+        $this->render('Entries/index', [
             'entries' => $pagination['entries']
         ]);
 
@@ -90,7 +90,7 @@ class EntryController extends AbstractController
          */
         if($pagination['numPages']>1)
         {
-            $this->render("layout/pagination", [
+            $this->render('layout/pagination', [
                 'paginationElements' => $paginationElements
             ]);
         }
@@ -100,14 +100,16 @@ class EntryController extends AbstractController
      *  - retrieve entry id from url
      *  - call render function with entry
      */
-    public function singleEntry()
+    public function singleEntry() : void
     {
         $id = $_GET['eid'];
+
         $entry = $this->entryRepository->findById($id);
-        $this->render("layout/header", [
+
+        $this->render('layout/header', [
             'navigation' => $this->loginService->getNavigation()
         ]);
-        $this->render("Entries/singleEntry", [
+        $this->render('Entries/singleEntry', [
             'entry' => $entry
         ]);
     }
