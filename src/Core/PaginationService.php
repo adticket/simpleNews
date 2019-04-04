@@ -29,7 +29,7 @@ class PaginationService
      * parameter: author - by default empty
      * returns: array[] containing number of pages, current page, and entries[]
      */
-    public function getPagination($author="")
+    public function getPagination($author='') : array
     {
         /*
          * array gets filled with standard values
@@ -49,7 +49,7 @@ class PaginationService
         /*
          * calculate number of pages
          */
-        if($numEntries > ($this->entriesPerPage))
+        if($numEntries > $this->entriesPerPage)
         {
             $pagination['numPages'] = (int) ($numEntries / $this->entriesPerPage);
             if(($numEntries % $this->entriesPerPage) > 0)
@@ -83,7 +83,7 @@ class PaginationService
         return $pagination;
     }
 
-    public function getPaginationElements($numPages)
+    public function getPaginationElements($numPages) : array
     {
         $links = [];
 
@@ -93,7 +93,7 @@ class PaginationService
 
             $link[] = '<li class="page-item';
 
-            if (isset($_GET['page']) && $x == $_GET['page'] || (!isset($_GET['page']) && $x == 1)) {
+            if ((isset($_GET['page']) && $x === (int)$_GET['page']) || (!isset($_GET['page']) && $x === 1)) {
                 $link[] = ' active">';
             } else {
                 $link[] = '">';
@@ -107,7 +107,7 @@ class PaginationService
 
             $link[] = '</li>';
 
-            $links[] = implode("", $link);
+            $links[] = implode('', $link);
         }
         return $links;
     }
