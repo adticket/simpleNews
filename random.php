@@ -109,5 +109,3 @@ $navigation = [
         return $entries;
     }
     */
-
-var_dump(explode("/", $_SERVER[PHP_SELF]));

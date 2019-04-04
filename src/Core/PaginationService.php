@@ -51,7 +51,7 @@ class PaginationService
          */
         if($numEntries > ($this->entriesPerPage))
         {
-            $pagination['numPages'] = $numEntries/$this->entriesPerPage;
+            $pagination['numPages'] = (int) ($numEntries / $this->entriesPerPage);
             if(($numEntries % $this->entriesPerPage) > 0)
             {
                 $pagination['numPages']++;

@@ -155,7 +155,7 @@ class LoginService
                 'login' => 'Login'
             ];
         }*/
-        if($this->check())
+        if(isset($_SESSION['login']))
         {
             $navigation = '
             <li class="nav-item">
