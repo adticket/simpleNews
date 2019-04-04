@@ -23,11 +23,6 @@
         <div class="collapse navbar-collapse" id="mynav">
             <ul class="navbar-nav mr-auto">
                 <?php echo $navigation; ?>
-                <?php /*foreach($navigation as $item => $value): ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo $item; ?>"><?php echo $value;?></a>
-                </li>
-                <?php endforeach; */?>
             </ul>
         </div>
     </nav>
