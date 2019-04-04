@@ -4,7 +4,7 @@
             <select name="author" class="form-control mr-sm-2">
                 <option value="" selected>Alle</option>
                 <?php foreach($authors AS $author):?>
-                    <option value="<?php echo $author; ?>" <?php if(isset($_GET['author'])){ if(($_GET['author']==$author)) echo "selected"; }?>><?php echo $author; ?></option>
+                    <option value="<?php echo $author; ?>" <?php if(isset($_GET['author']) && $_GET['author']===$author){ echo 'selected'; }?>><?php echo $author; ?></option>
                 <?php endforeach; ?>
             </select>
             <button type="submit" class="btn btn-outline-secondary my-sm-0">Suchen</button>

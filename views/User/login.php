@@ -28,4 +28,4 @@
 </div>
 
 
-<?php include_once __DIR__ . "/../layout/footer.php"; ?>
+<?php include_once __DIR__ . '/../layout/footer.php'; ?>
