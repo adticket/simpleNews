@@ -16,7 +16,7 @@ class UserRepository extends AbstractRepository
     /*
      *  - returns table name in db
      */
-    public function getTableName()
+    public function getTableName() : string
     {
         return 'users';
     }
@@ -24,7 +24,7 @@ class UserRepository extends AbstractRepository
     /*
      *  - return model to store data as
      */
-    public function getModelName()
+    public function getModelName() : string
     {
         return 'App\\User\\UserModel';
     }
@@ -40,7 +40,7 @@ class UserRepository extends AbstractRepository
         $stmt = $this->pdo->prepare("SELECT * FROM {$table} WHERE (username = :username)");
         $stmt->execute([':username' => $username]);
         $stmt->setFetchMode(PDO::FETCH_CLASS, $model);
-        $user =  $stmt->fetch(PDO::FETCH_CLASS);
+        $user =  $stmt->fetch();
 
         return $user;
     }
@@ -64,7 +64,7 @@ class UserRepository extends AbstractRepository
      *  - add user to db
      *  - prepare statement, bind parameter, execute statement
      */
-    public function addUser($username, $firstname, $surname, $passwordhash, $email)
+    public function addUser($username, $firstname, $surname, $passwordhash, $email) : void
     {
         $table = $this->getTableName();
 
