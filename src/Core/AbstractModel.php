@@ -16,7 +16,7 @@ use ArrayAccess;
  */
 abstract class AbstractModel implements ArrayAccess
 {
-    public function offsetExists($offset)
+    public function offsetExists($offset) : bool
     {
         return isset($this->$offset);
     }
@@ -26,12 +26,12 @@ abstract class AbstractModel implements ArrayAccess
         return $this->$offset;
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value) : void
     {
         $this->$offset = $value;
     }
 
-    public function offsetUnset($offset)
+    public function offsetUnset($offset) : void
     {
         unset($this->$offset);
     }
