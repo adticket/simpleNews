@@ -23,7 +23,7 @@ class UserController extends AbstractController
      *  - if it fails return error
      *  - render login page view
      */
-    public function login()
+    public function login() : void
     {
         $error = false;
         if(!empty($_POST['login']) && !empty($_POST['password']))
@@ -33,17 +33,19 @@ class UserController extends AbstractController
 
             if($this->loginService->attempt($login, $password))
             {
-                header("Location: dashboard");
+                header('Location: userEntries');
                 return;
             }
-            else
-            {
-                $error = true;
-            }
-
+            $error = true;
         }
 
-        $this->render("layout/header", [
+        if(isset($_SESSION['login']))
+        {
+            header('Location: userEntries');
+            return;
+        }
+
+        $this->render('layout/header', [
             'navigation' => $this->loginService->getNavigation()
         ]);
         $this->render(
@@ -56,21 +58,21 @@ class UserController extends AbstractController
      *  - calls loginService to logout
      *  - redirects to login page view
      */
-    public function logout()
+    public function logout() : void
     {
         $this->loginService->logout();
-        header("Location: login");
+        header('Location: login');
     }
 
     /*
      *  - calls loginService register method
      *  - renders register page view
      */
-    public function register()
+    public function register() : void
     {
         $errors = $this->loginService->register();
 
-        $this->render("layout/header", [
+        $this->render('layout/header', [
             'navigation' => $this->loginService->getNavigation()
         ]);
         $this->render('User/register',[
