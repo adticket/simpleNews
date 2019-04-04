@@ -17,20 +17,23 @@ session_start();
  *  - creates instance of container
  *  - contains function against sql-injections
  */
-require __DIR__ . "/../init.php";
+require __DIR__ . '/../init.php';
 
 /*
  * Sets path if set in server array
  *  - index if nothing is set yet
  */
+/*
 if(isset($_SERVER['PATH_INFO']))
 {
     $pathInfo = $_SERVER['PATH_INFO'];
 }
 else
 {
-    $pathInfo = "/index";
+    $pathInfo = '/index';
 }
+*/
+$pathInfo = $_SERVER['PATH_INFO'] ?? '/index';
 
 /*
  * Array with all possible routes
