@@ -14,9 +14,9 @@ namespace App\Core;
  */
 abstract class AbstractController
 {
-    protected function render($view, $params)
+    protected function render($view, $params) : void
     {
-        extract($params);
+        extract($params, EXTR_SKIP);
 
         include __DIR__ . "/../../views/{$view}.php";
     }
