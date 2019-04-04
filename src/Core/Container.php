@@ -26,6 +26,7 @@ class Container
      *          and calls make-method
      */
     private $instances = [];
+    private $recipe;
 
     /*
      * creates and object of every class by using make-method
@@ -33,7 +34,7 @@ class Container
     public function __construct()
     {
         $this->recipe = [
-            'pdo' => function()
+            'pdo' => static function()
             {
                 try
                 {
