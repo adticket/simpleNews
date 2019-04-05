@@ -115,13 +115,21 @@ class PaginationService
             return $links;
         }
         /*
-         *  else
+         *  else show scaling pagination
          */
         else
         {
-            $links[] = '<a class="page-link" href="?author=' . $_GET['author'] . '&page=1">&laquo;</a>';
+            if(isset($_GET['author']))
+            {
+                $links[] = '<a class="page-link" href="?author=' . $_GET['author'] . '&page=1">&laquo;</a>';
+            }
+            else
+            {
+                $links[] = '<a class="page-link" href="?page=1">&laquo;</a>';
+            }
 
-            if ($_GET['page'] <= 3 || !isset($_GET['page'])) {
+
+            if (!isset($_GET['page']) || $_GET['page'] <= 3) {
                 for ($x = 1; $x <= 5; $x++) {
                     $link = [];
 
@@ -194,8 +202,14 @@ class PaginationService
                 }
             }
 
-            $links[] = '<a class="page-link" href="?author=' . $_GET['author'] . '&page=' . $numPages . '">&raquo;</a>';
-
+            if(isset($_GET['author']))
+            {
+                $links[] = '<a class="page-link" href="?author=' . $_GET['author'] . '&page=' . $numPages . '">&raquo;</a>';
+            }
+            else
+            {
+                $links[] = '<a class="page-link" href="?page=' . $numPages . '">&raquo;</a>';
+            }
         }
         return $links;
     }
