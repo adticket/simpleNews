@@ -109,3 +109,28 @@ $navigation = [
         return $entries;
     }
     */
+
+?>
+
+<!-- AJAX -->
+<div id="hallo">
+    <h2>
+        Let the body hit the floor!
+    </h2>
+</div>
+<div id="change">
+    This div is gonna get changed!
+</div>
+<button type="button" onclick="loadDoc()">Button of Change</button>
+<script>
+    function loadDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById('change').innerHTML = this.statusText;
+            }
+        };
+        xhttp.open("GET", "hallo.txt", true);
+        xhttp.send();
+    }
+</script>
