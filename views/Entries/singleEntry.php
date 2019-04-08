@@ -14,8 +14,13 @@
     </div>
     <br />
 
-    <a href="index?page=<?php echo $_GET['page']; ?>" class="btn btn-primary">Zurück</a>
+    <a href="index?page=<?php echo $_GET['page'];
+        if(isset($_GET['author']))
+        {
+            echo '&author=' . $_GET['author'];
+        }
+    ?>" class="btn btn-primary">Zurück</a>
 
 </div>
 
-<?php include_once __DIR__ . "/../layout/footer.php"; ?>
+<?php include_once __DIR__ . '/../layout/footer.php'; ?>

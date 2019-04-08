@@ -50,7 +50,7 @@ class EntryModel extends AbstractModel
     /*
      * create short content on creation if content exceeds max length of short content
      */
-    function __construct()
+    public function __construct()
     {
         if(strlen($this->blogcontent) < $this->maxLength)
         {

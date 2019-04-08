@@ -21,7 +21,12 @@
         <div class="form-group">
             <input type="submit" class="btn btn-primary col-sm-3" name="update" value="Änderung speichern">
             <input type="submit" class="btn btn-secondary col-sm-3" name="discard" value="Änderung verwerfen">
-            <input type="submit" class="btn btn-danger col-sm-3 float-right" name="delete" value="Eintrag löschen">
+            <button type="button" class="btn btn-danger col-sm-3 float-right" data-toggle="modal" data-target="#deleteEntryModal">
+                Eintrag löschen
+            </button>
         </div>
     </form>
 </div>
+
+<?php require_once __DIR__ . '/../Modal/deleteEntryModal.php';
+

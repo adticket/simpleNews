@@ -9,12 +9,12 @@
 namespace App\Core;
 
 use App\Entry\EntryController;
+use App\Entry\EntryRepository;
 use App\User\AdminController;
 use App\User\LoginService;
 use App\User\UserController;
 use App\User\UserRepository;
 use PDO;
-use App\Entry\EntryRepository;
 use PDOException;
 
 
@@ -26,15 +26,15 @@ class Container
      *          and calls make-method
      */
     private $instances = [];
-    private $recipe = [];
+    private $recipe;
 
     /*
      * creates and object of every class by using make-method
      */
-    function __construct()
+    public function __construct()
     {
         $this->recipe = [
-            'pdo' => function()
+            'pdo' => static function()
             {
                 try
                 {
@@ -45,7 +45,7 @@ class Container
                 }
                 catch(PDOException $e)
                 {
-                    echo "Verbindung zur Datenbank fehlgeschlagen";
+                    echo "Verbindung zur Datenbank fehlgeschlagen!<br />Bitte kontaktieren Sie mich!";
                     die;
                 }
                 return $pdo;
@@ -82,11 +82,12 @@ class Container
     }
 
     /*
-     * checks if instances already exists in $instances[]
+     * checks if instance($name) already exists in $instances[]
      *  - returns it if it exists
      *  - else creates it after recipe[]
+     *  - only one object of each class will exist
      */
-    function make($name)
+    public function make($name)
     {
         if(!empty($this->instances[$name]))
         {
@@ -97,5 +98,6 @@ class Container
             $this->instances[$name] = $this->recipe[$name]();
         }
         return $this->instances[$name];
+
     }
 }

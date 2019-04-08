@@ -24,34 +24,28 @@ class LoginService
      *  - if successful sets login and regenerates session id
      *  - error displays error message on page
      */
-    public function attempt($login, $password)
+    public function attempt($login, $password) : bool
     {
         if(filter_var($login, FILTER_VALIDATE_EMAIL))
         {
             $user = $this->userRepository->findByEmail($login);
-            if(!empty($user))
+            if(!empty($user) && password_verify($password, $user['password']))
             {
-                if (password_verify($password, $user['password']))
-                {
-                    $_SESSION['login'] = $user['username'];
-                    session_regenerate_id(true);
-                    header("Location: dashboard");
-                    return true;
-                }
+                $_SESSION['login'] = $user['username'];
+                session_regenerate_id(true);
+                header('Location: dashboard');
+                return true;
             }
         }
         else
         {
             $user = $this->userRepository->findByUsername($login);
-            if(!empty($user))
+            if(!empty($user) && password_verify($_POST['password'], $user['password']))
             {
-                if (password_verify($_POST['password'], $user['password']))
-                {
-                    $_SESSION['login'] = $user['username'];
-                    session_regenerate_id(true);
-                    header("Location: dashboard");
-                    return true;
-                }
+                $_SESSION['login'] = $user['username'];
+                session_regenerate_id(true);
+                header('Location: dashboard');
+                return true;
             }
 
         }
@@ -62,7 +56,7 @@ class LoginService
      *  - unset login
      *  - regenerate session id
      */
-    public function logout()
+    public function logout() : void
     {
         unset($_SESSION['login']);
         session_regenerate_id(true);
@@ -72,17 +66,14 @@ class LoginService
      *  - checks if login is set
      *  - if not method dies redirecting to login page
      */
-    public function check()
+    public function check() : bool
     {
         if(isset($_SESSION['login']))
         {
             return true;
         }
-        else
-        {
-            header("Location: login");
-            die;
-        }
+        header('Location: login');
+        die;
     }
 
     /*
@@ -104,21 +95,21 @@ class LoginService
 
             if(!filter_var($email, FILTER_VALIDATE_EMAIL))
             {
-                $errors[] = "Ungültige E-Mail-Adresse";
+                $errors[] = 'Ungültige E-Mail-Adresse';
             }
             if(!empty($this->userRepository->findByEmail($email)))
             {
-                $errors[] = "E-Mail-Adresse bereits vorhanden";
+                $errors[] = 'E-Mail-Adresse bereits vorhanden';
             }
 
             if(!password_verify($password2, $passwordhash))
             {
-                $errors[] = "Passwörter stimmen nicht überein";
+                $errors[] = 'Passwörter stimmen nicht überein';
             }
 
             if(!empty($this->userRepository->findByUsername($username)))
             {
-                $errors[] = "Username bereits verwendet";
+                $errors[] = 'Username bereits verwendet';
             }
 
             if(empty($errors)) {
@@ -126,7 +117,7 @@ class LoginService
                     $this->userRepository->addUser($username, $firstname, $surname, $passwordhash, $email);
                     return null;
                 } catch (Exception $exception) {
-                    $errors[] = "Account konnte nicht erstellt werden";
+                    $errors[] = 'Account konnte nicht erstellt werden';
                 }
             }
 
@@ -137,22 +128,40 @@ class LoginService
     /*
      *  - returns navigation depending if logged in or not
      */
-    public function getNavigation()
+    public function getNavigation() : string
     {
         if(isset($_SESSION['login']))
         {
-            return [
-                'index' => 'Startseite',
-                'dashboard' => 'Dashboard',
-                'logout' => 'Logout'
-                ];
+            $navigation = '
+            <li class="nav-item">
+                    <a class="nav-link" href="index">Startseite</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dashboard
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="userEntries">Meine Beiträge</a>
+                    <a class="dropdown-item" href="addEntry">Beitrag verfassen</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                    <a class="nav-link" href="logout">Logout</a>
+            </li>
+            ';
         }
         else
         {
-            return [
-                'index' => 'Startseite',
-                'login' => 'Login'
-            ];
+            $navigation = '
+            <li>
+                    <a class="nav-link" href="index">Startseite</a>
+            </li>
+            <li class="nav-item">
+                    <a class="nav-link" href="login">Login</a>
+            </li>
+            ';
         }
+
+        return $navigation;
     }
 }

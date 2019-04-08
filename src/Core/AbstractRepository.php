@@ -23,6 +23,6 @@ abstract class AbstractRepository
         $this->pdo = $pdo;
     }
 
-    abstract function getTableName();
-    abstract function getModelName();
+    abstract public function getTableName();
+    abstract public function getModelName();
 }

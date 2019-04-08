@@ -23,13 +23,13 @@ class PaginationService
     /*
      * entries per page
      */
-    public $entriesPerPage = 8;
+    public $entriesPerPage = 4;
 
     /*
      * parameter: author - by default empty
      * returns: array[] containing number of pages, current page, and entries[]
      */
-    public function getPagination($author="")
+    public function getPagination($author='') : array
     {
         /*
          * array gets filled with standard values
@@ -49,9 +49,9 @@ class PaginationService
         /*
          * calculate number of pages
          */
-        if($numEntries > ($this->entriesPerPage))
+        if($numEntries > $this->entriesPerPage)
         {
-            $pagination['numPages'] = $numEntries/$this->entriesPerPage;
+            $pagination['numPages'] = (int) ($numEntries / $this->entriesPerPage);
             if(($numEntries % $this->entriesPerPage) > 0)
             {
                 $pagination['numPages']++;
@@ -83,31 +83,133 @@ class PaginationService
         return $pagination;
     }
 
-    public function getPaginationElements($numPages)
+    public function getPaginationElements($numPages) : array
     {
         $links = [];
 
-        for($x=1; $x<=$numPages; $x++)
+        /*
+         *  if less than 5 pages, dont show arrow to first and last page;
+         */
+        if($numPages<=5) {
+            for ($x = 1; $x <= $numPages; $x++) {
+                $link = [];
+
+                $link[] = '<li class="page-item';
+
+                if ((isset($_GET['page']) && $x === (int)$_GET['page']) || (!isset($_GET['page']) && $x === 1)) {
+                    $link[] = ' active">';
+                } else {
+                    $link[] = '">';
+                }
+
+                if (isset($_GET['author'])) {
+                    $link[] = '<a class="page-link" href="?author=' . $_GET['author'] . '&page=' . $x . '">' . $x . '</a>';
+                } else {
+                    $link[] = '<a class="page-link" href="?page=' . $x . '">' . $x . '</a>';
+                }
+
+                $link[] = '</li>';
+
+                $links[] = implode('', $link);
+            }
+            return $links;
+        }
+        /*
+         *  else show scaling pagination
+         */
+        else
         {
-            $link = [];
-
-            $link[] = '<li class="page-item';
-
-            if (isset($_GET['page']) && $x == $_GET['page'] || (!isset($_GET['page']) && $x == 1)) {
-                $link[] = ' active">';
-            } else {
-                $link[] = '">';
+            if(isset($_GET['author']))
+            {
+                $links[] = '<a class="page-link" href="?author=' . $_GET['author'] . '&page=1">&laquo;</a>';
+            }
+            else
+            {
+                $links[] = '<a class="page-link" href="?page=1">&laquo;</a>';
             }
 
-            if (isset($_GET['author'])) {
-                $link[] = '<a class="page-link" href="?author=' . $_GET['author'] . '&page=' . $x . '">' . $x . '</a>';
-            } else {
-                $link[] = '<a class="page-link" href="?page=' . $x . '">' . $x . '</a>';
+
+            if (!isset($_GET['page']) || $_GET['page'] <= 3) {
+                for ($x = 1; $x <= 5; $x++) {
+                    $link = [];
+
+                    $link[] = '<li class="page-item';
+
+                    if ((isset($_GET['page']) && $x === (int)$_GET['page']) || (!isset($_GET['page']) && $x === 1)) {
+                        $link[] = ' active">';
+                    } else {
+                        $link[] = '">';
+                    }
+
+                    if (isset($_GET['author'])) {
+                        $link[] = '<a class="page-link" href="?author=' . $_GET['author'] . '&page=' . $x . '">' . $x . '</a>';
+                    } else {
+                        $link[] = '<a class="page-link" href="?page=' . $x . '">' . $x . '</a>';
+                    }
+
+                    $link[] = '</li>';
+
+                    $links[] = implode('', $link);
+                }
             }
 
-            $link[] = '</li>';
+            elseif ($_GET['page'] >= $numPages - 2) {
+                for ($x = $numPages - 4; $x <= $numPages; $x++) {
+                    $link = [];
 
-            $links[] = implode("", $link);
+                    $link[] = '<li class="page-item';
+
+                    if ((isset($_GET['page']) && $x === (int)$_GET['page']) || (!isset($_GET['page']) && $x === 1)) {
+                        $link[] = ' active">';
+                    } else {
+                        $link[] = '">';
+                    }
+
+                    if (isset($_GET['author'])) {
+                        $link[] = '<a class="page-link" href="?author=' . $_GET['author'] . '&page=' . $x . '">' . $x . '</a>';
+                    } else {
+                        $link[] = '<a class="page-link" href="?page=' . $x . '">' . $x . '</a>';
+                    }
+
+                    $link[] = '</li>';
+
+                    $links[] = implode('', $link);
+                }
+            }
+
+            else
+            {
+                for ($x = $_GET['page']-2; $x <= $_GET['page']+2; $x++) {
+                    $link = [];
+
+                    $link[] = '<li class="page-item';
+
+                    if ((isset($_GET['page']) && $x === (int)$_GET['page']) || (!isset($_GET['page']) && $x === 1)) {
+                        $link[] = ' active">';
+                    } else {
+                        $link[] = '">';
+                    }
+
+                    if (isset($_GET['author'])) {
+                        $link[] = '<a class="page-link" href="?author=' . $_GET['author'] . '&page=' . $x . '">' . $x . '</a>';
+                    } else {
+                        $link[] = '<a class="page-link" href="?page=' . $x . '">' . $x . '</a>';
+                    }
+
+                    $link[] = '</li>';
+
+                    $links[] = implode('', $link);
+                }
+            }
+
+            if(isset($_GET['author']))
+            {
+                $links[] = '<a class="page-link" href="?author=' . $_GET['author'] . '&page=' . $numPages . '">&raquo;</a>';
+            }
+            else
+            {
+                $links[] = '<a class="page-link" href="?page=' . $numPages . '">&raquo;</a>';
+            }
         }
         return $links;
     }
