@@ -113,4 +113,13 @@ class EntryController extends AbstractController
             'entry' => $entry
         ]);
     }
+
+    public function searchEntries() : void
+    {
+
+
+        $this->render("Entries/searchResults", [
+
+        ]);
+    }
 }
