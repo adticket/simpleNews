@@ -24,6 +24,10 @@
             <ul class="navbar-nav mr-auto">
                 <?php echo $navigation; ?>
             </ul>
+            <form class="form-inline my-sm-0" method="get" action="search">
+                <input class="form-control my-sm-0" name="search" type="search" placeholder="Suche" aria-label="Search">
+                <button class="btn btn-secondary my-sm-0" type="submit">Suchen</button>
+            </form>
         </div>
     </nav>
 </div>

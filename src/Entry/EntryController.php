@@ -114,12 +114,26 @@ class EntryController extends AbstractController
         ]);
     }
 
-    public function searchEntries() : void
+    public function search() : void
     {
+        if(isset($_GET))
+        {
+            $searchQuery = e($_GET['search']);
+        }
+        else
+        {
+            $searchQuery='';
+        }
 
+        $entries = $this->entryRepository->searchEntries($searchQuery);
 
-        $this->render("Entries/searchResults", [
+        $this->render('layout/header', [
+            'navigation' => $this->loginService->getNavigation()
+        ]);
 
+        $this->render('Entries/searchResults', [
+            'searchQuery' => $searchQuery,
+            'searchResults' => $entries
         ]);
     }
 }

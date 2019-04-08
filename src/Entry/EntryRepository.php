@@ -201,4 +201,32 @@ class EntryRepository extends AbstractRepository
 
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
+
+    public function searchEntries($string) : array
+    {
+        $model = $this->getModelName();
+        $table = $this->getTableName();
+        $query = "%" . $string . "%";
+
+        $stmt = $this->pdo->prepare("
+            SELECT *
+            FROM {$table}
+            WHERE blogcontent
+            LIKE :searchQuery
+            UNION
+            SELECT * 
+            FROM {$table}
+            WHERE blogtitle
+            LIKE :searchQuery
+            ORDER BY dateofentry DESC 
+        ");
+
+        $stmt->bindParam(':searchQuery', $query);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, $model);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
 }

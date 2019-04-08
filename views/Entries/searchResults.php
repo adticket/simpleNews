@@ -3,7 +3,7 @@
 </div>
 
 <div class="container">
-    <?php foreach ($entries AS $entry): ?>
+    <?php foreach ($searchResults AS $searchResult): ?>
         <div class="card">
             <div class="card-header">
                 <a href="entry?page=<?php if(isset($_GET['page']))
@@ -14,22 +14,22 @@
                 {
                     echo 1;
                 }
-                ?>&eid=<?php echo $entry['entryID'];
+                ?>&eid=<?php echo $searchResult['entryID'];
                 if(isset($_GET['author']))
                 {
                     echo '&author=' . $_GET['author'];
                 }
                 ?>"
                    class="text-dark font-weight-bold">
-                    <?php echo nl2br($entry['blogtitle']); ?>
+                    <?php echo nl2br($searchResult['blogtitle']); ?>
                 </a>
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                    <?php echo $entry['shortContent']; ?>
+                    <?php echo $searchResult['shortContent']; ?>
                 </li>
                 <li class="list-group-item">
-                    <?php echo "{$entry['dateofentry']} von {$entry['author']}"; ?>
+                    <?php echo "{$searchResult['dateofentry']} von {$searchResult['author']}"; ?>
                 </li>
             </ul>
         </div>
