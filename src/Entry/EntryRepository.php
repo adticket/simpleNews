@@ -202,6 +202,9 @@ class EntryRepository extends AbstractRepository
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
 
+    /*
+     *  - return all entries that contain the string parameter in title or content
+     */
     public function searchEntries($string) : array
     {
         $model = $this->getModelName();
