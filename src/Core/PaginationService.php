@@ -219,4 +219,12 @@ class PaginationService
         }
         return $links;
     }
+
+    /*
+     *  trying to clean up
+     */
+    public function getCurrentEntries($entries) : array
+    {
+
+    }
 }
