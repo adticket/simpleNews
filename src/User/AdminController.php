@@ -62,21 +62,18 @@ class AdminController extends AbstractController
         $this->render('layout/header', [
             'navigation' => $this->loginService->getNavigation()
         ]);
-        if($pagination['numPages']>1)
-        {
-            $this->render('layout/pagination', [
-                'paginationElements' => $paginationElements
-            ]);
-        }
+
+        $this->render('layout/pagination', [
+            'paginationElements' => $paginationElements
+        ]);
+
         $this->render('User/userEntries', [
             'entries' => $pagination['entries']
         ]);
-        if($pagination['numPages']>1)
-        {
-            $this->render('layout/pagination', [
-                'paginationElements' => $paginationElements
-            ]);
-        }
+
+        $this->render('layout/pagination', [
+            'paginationElements' => $paginationElements
+        ]);
     }
 
     /*

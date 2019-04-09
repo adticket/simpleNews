@@ -108,7 +108,7 @@ class PaginationService
         /*
          *  if less than 5 pages, dont show arrow to first and last page;
          */
-        if($numPages<=5) {
+        if($numPages<=5 && $numPages > 1) {
             for ($x = 1; $x <= $numPages; $x++) {
                 $link = [];
 
@@ -135,7 +135,7 @@ class PaginationService
         /*
          *  else show scaling pagination
          */
-        else
+        elseif($numPages > 5)
         {
             if(isset($_GET['author']))
             {
@@ -247,5 +247,20 @@ class PaginationService
         }
 
         return array_slice($entries, ($currentPage-1)*$this->entriesPerPage, $this->entriesPerPage);
+    }
+
+    public function getPaginationBar($numberOfEntries) : void
+    {
+        if(isset($_GET['page']))
+        {
+            $currentPage = $_GET['page'];
+        }
+        else
+        {
+            $currentPage = 1;
+        }
+
+        $currentUrl = $_SERVER['PATH_INFO'];
+
     }
 }

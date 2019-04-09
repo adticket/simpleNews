@@ -64,12 +64,9 @@ class EntryController extends AbstractController
         /*
          *  call render function for pagination if there is more than one page
          */
-        if($pagination['numPages']>1)
-        {
-            $this->render('layout/pagination', [
-                'paginationElements' => $paginationElements
-            ]);
-        }
+        $this->render('layout/pagination', [
+            'paginationElements' => $paginationElements
+        ]);
 
         /*
          *  render filter option
@@ -88,12 +85,9 @@ class EntryController extends AbstractController
         /*
          *  render pagination on bottom of site
          */
-        if($pagination['numPages']>1)
-        {
-            $this->render('layout/pagination', [
-                'paginationElements' => $paginationElements
-            ]);
-        }
+        $this->render('layout/pagination', [
+            'paginationElements' => $paginationElements
+        ]);
     }
 
     /*
@@ -154,6 +148,11 @@ class EntryController extends AbstractController
                 'paginationElements' => $paginationElements
             ]);
         }
+
+        var_dump($_SERVER['PATH_INFO']);
+        var_dump($_SERVER['REQUEST_URI']);
+        var_dump(extract($_GET, EXTR_SKIP));
+        var_dump($search);
 
         $this->render('Entries/searchResults', [
             'searchQuery' => $searchQuery,
