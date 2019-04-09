@@ -10,4 +10,4 @@ On the index page the latest entries of any user will be shown.
 You can filter them by username. Use the pagination to get to older entries.
 
 The folder V1 contains the first try at this project. It has most of the functionalities 
-of the new version, but it's coded not very clean.
+of the new version, but it isn't coded very clean.
