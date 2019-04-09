@@ -119,22 +119,14 @@ class EntryController extends AbstractController
             $searchQuery='';
         }
 
-        // Test
         $allEntries = $this->entryRepository->searchEntries($searchQuery);
         $currentEntries = $this->paginationService->getCurrentEntries($allEntries);
+        $paginationElements = $this->paginationService->getPaginationBar(count($allEntries));
 
 
         /*
-         *  get pagination containing entries filtered by page and author
+         *  render Navbar
          */
-        $pagination = $this->paginationService->getPagination($searchQuery);
-
-
-        /*
-         *  get all elements for pagination
-         */
-        $paginationElements = $this->paginationService->getPaginationElements($pagination['numPages']);
-
         $this->render('layout/header', [
             'navigation' => $this->loginService->getNavigation()
         ]);
@@ -142,21 +134,23 @@ class EntryController extends AbstractController
         /*
          *  call render function for pagination if there is more than one page
          */
-        if($pagination['numPages']>1)
-        {
-            $this->render('layout/pagination', [
-                'paginationElements' => $paginationElements
-            ]);
-        }
+        $this->render('layout/pagination', [
+            'paginationElements' => $paginationElements
+        ]);
 
-        var_dump($_SERVER['PATH_INFO']);
-        var_dump($_SERVER['REQUEST_URI']);
-        var_dump(extract($_GET, EXTR_SKIP));
-        var_dump($search);
-
+        /*
+         *  view search results
+         */
         $this->render('Entries/searchResults', [
             'searchQuery' => $searchQuery,
-            'searchResults' => $pagination['entries']
+            'searchResults' => $currentEntries
+        ]);
+
+        /*
+         *  call render function for pagination if there is more than one page
+         */
+        $this->render('layout/pagination', [
+            'paginationElements' => $paginationElements
         ]);
     }
 }

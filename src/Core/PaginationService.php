@@ -103,6 +103,7 @@ class PaginationService
      */
     public function getPaginationElements($numPages) : array
     {
+        $link = [];
         $links = [];
 
         /*
@@ -249,18 +250,82 @@ class PaginationService
         return array_slice($entries, ($currentPage-1)*$this->entriesPerPage, $this->entriesPerPage);
     }
 
-    public function getPaginationBar($numberOfEntries) : void
+    public function getPaginationBar($numberOfEntries) : array
     {
-        if(isset($_GET['page']))
-        {
-            $currentPage = $_GET['page'];
-        }
-        else
-        {
-            $currentPage = 1;
+        $links = [];
+        $numberOfPages = 1;
+
+        $currentPage = (int)($_GET['page'] ?? '1');
+
+        if ($numberOfEntries > $this->entriesPerPage) {
+            $numberOfPages = (int)($numberOfEntries / $this->entriesPerPage);
+            if (($numberOfEntries % $this->entriesPerPage) > 0) {
+                $numberOfPages++;
+            }
         }
 
-        $currentUrl = $_SERVER['PATH_INFO'];
+        if($numberOfPages <= 5 && $numberOfPages > 1)
+        {
+            for($x = 1; $x <= $numberOfPages; $x++)
+            {
+                $link = [];
+                $link[] = '<li class="page-item';
 
+                if ($x === $currentPage) {
+                    $link[] = ' active">';
+                } else {
+                    $link[] = '">';
+                }
+
+                $first = true;
+
+                $link[] = '<a class="page-link" href="?';
+
+                if(isset($_GET['page']))
+                {
+                    foreach($_GET as $key => $value)
+                    {
+                        if(!$first)
+                        {
+                            $link[] = '&';
+                        }
+                        else
+                        {
+                            $first = false;
+                        }
+                        if($key === 'page')
+                        {
+                            $value=$x;
+                        }
+                        $link[] = $key . '=' . $value;
+                    }
+                }
+                else
+                {
+                    foreach($_GET as $key => $value)
+                    {
+                        if(!$first)
+                        {
+                            $link[] = '&';
+                        }
+                        else
+                        {
+                            $first = false;
+                        }
+                        $link[] = $key . '=' . $value;
+                    }
+                    $link[] = '&page=' . $x;
+                }
+
+                $link[] = '">' . $x . '</a></li>';
+
+                $links[] = implode('', $link);
+            }
+        }
+        elseif($numberOfPages > 5)
+        {
+
+        }
+        return $links;
     }
 }
