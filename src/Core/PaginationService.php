@@ -225,6 +225,8 @@ class PaginationService
      */
     public function getCurrentEntries($entries) : array
     {
-
+        /*
+         *  here comes the code
+         */
     }
 }
