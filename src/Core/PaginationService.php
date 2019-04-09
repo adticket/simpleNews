@@ -324,7 +324,61 @@ class PaginationService
         }
         elseif($numberOfPages > 5)
         {
+            for($x = 1; $x <= $numberOfPages; $x++)
+            {
+                $link = [];
+                $link[] = '<li class="page-item';
 
+                if ($x === $currentPage) {
+                    $link[] = ' active">';
+                } else {
+                    $link[] = '">';
+                }
+
+                $first = true;
+
+                $link[] = '<a class="page-link" href="?';
+
+                if(isset($_GET['page']))
+                {
+                    foreach($_GET as $key => $value)
+                    {
+                        if(!$first)
+                        {
+                            $link[] = '&';
+                        }
+                        else
+                        {
+                            $first = false;
+                        }
+                        if($key === 'page')
+                        {
+                            $value=$x;
+                        }
+                        $link[] = $key . '=' . $value;
+                    }
+                }
+                else
+                {
+                    foreach($_GET as $key => $value)
+                    {
+                        if(!$first)
+                        {
+                            $link[] = '&';
+                        }
+                        else
+                        {
+                            $first = false;
+                        }
+                        $link[] = $key . '=' . $value;
+                    }
+                    $link[] = '&page=' . $x;
+                }
+
+                $link[] = '">' . $x . '</a></li>';
+
+                $links[] = implode('', $link);
+            }
         }
         return $links;
     }
