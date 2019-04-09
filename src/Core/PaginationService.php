@@ -86,6 +86,9 @@ class PaginationService
         return $pagination;
     }
 
+    /*
+     *  get pagination bar with all elements
+     */
     public function getPaginationElements($numPages) : array
     {
         $links = [];
