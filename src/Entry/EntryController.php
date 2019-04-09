@@ -125,17 +125,39 @@ class EntryController extends AbstractController
             $searchQuery='';
         }
 
+        // Test
         $allEntries = $this->entryRepository->searchEntries($searchQuery);
-
         $currentEntries = $this->paginationService->getCurrentEntries($allEntries);
+
+
+        /*
+         *  get pagination containing entries filtered by page and author
+         */
+        $pagination = $this->paginationService->getPagination($searchQuery);
+
+
+        /*
+         *  get all elements for pagination
+         */
+        $paginationElements = $this->paginationService->getPaginationElements($pagination['numPages']);
 
         $this->render('layout/header', [
             'navigation' => $this->loginService->getNavigation()
         ]);
 
+        /*
+         *  call render function for pagination if there is more than one page
+         */
+        if($pagination['numPages']>1)
+        {
+            $this->render('layout/pagination', [
+                'paginationElements' => $paginationElements
+            ]);
+        }
+
         $this->render('Entries/searchResults', [
             'searchQuery' => $searchQuery,
-            'searchResults' => $currentEntries
+            'searchResults' => $pagination['entries']
         ]);
     }
 }

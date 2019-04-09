@@ -39,13 +39,14 @@ class Container
                 try
                 {
                     $pdo = new PDO(
-                        "mysql:host=localhost;dbname=mydb;charset=utf8",
-                        "myblog",
-                        "wxs0acpgOJHlk6ik");
+                        'mysql:host=localhost;dbname=mydb;charset=utf8',
+                        'myblog',
+                        'wxs0acpgOJHlk6ik'
+                    );
                 }
                 catch(PDOException $e)
                 {
-                    echo "Verbindung zur Datenbank fehlgeschlagen!<br />Bitte kontaktieren Sie mich!";
+                    echo 'Verbindung zur Datenbank fehlgeschlagen!<br /> Fehlercode: ' . $e->getCode();
                     die;
                 }
                 return $pdo;

@@ -81,7 +81,19 @@ class PaginationService
         else
         {
             $pagination['entries'] = $this->entryRepository->searchEntries($string);
+
+            /*
+             *  calculate number of pages
+             */
+            if (count($pagination['entries']) > $this->entriesPerPage) {
+                $pagination['numPages'] = (int)count($pagination['entries']) / $this->entriesPerPage;
+                if ((count($pagination['entries']) % $this->entriesPerPage) > 0) {
+                    $pagination['numPages']++;
+                }
+            }
         }
+
+
 
         return $pagination;
     }
