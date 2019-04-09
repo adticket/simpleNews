@@ -229,8 +229,5 @@ class PaginationService
          *  here comes the code
          */
 
-        /*
-         *  some more comments
-         */
     }
 }
