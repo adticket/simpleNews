@@ -225,8 +225,15 @@ class PaginationService
      */
     public function getCurrentEntries($entries) : array
     {
-        /*
-         *  here comes the code
-         */
+        if(isset($_GET['page']))
+        {
+            $currentPage = e($_GET['page']);
+        }
+        else
+        {
+            $currentPage = 1;
+        }
+
+        return array_slice($entries, ($currentPage-1)*$this->entriesPerPage, $this->entriesPerPage);
     }
 }
