@@ -30,29 +30,25 @@ class EntryController extends AbstractController
         /*
          *  find if filter is set
          */
-        if(isset($_GET['author']))
+        if(isset($_GET['author']) && $_GET['author'] !== '')
         {
             $author = e($_GET['author']);
         }
         else
         {
-            $author = '';
+            $author = '%';
         }
 
-        /*
-         *  get pagination containing entries filtered by page and author
-         */
-        $pagination = $this->paginationService->getPagination($author);
 
         /*
          *  get all authors for filter
          */
         $authors = $this->entryRepository->getAuthors();
 
-        /*
-         *  get all elements for pagination
-         */
-        $paginationElements = $this->paginationService->getPaginationElements($pagination['numPages']);
+
+        $allEntries = $this->entryRepository->getAllEntriesOfAuthor($author);
+        $currentEntries = $this->paginationService->getCurrentEntries($allEntries);
+        $paginationElements = $this->paginationService->getPaginationBar(count($allEntries));
 
         /*
          *  call render function for navigation bar
@@ -79,7 +75,7 @@ class EntryController extends AbstractController
          *  render entries
          */
         $this->render('Entries/index', [
-            'entries' => $pagination['entries']
+            'entries' => $currentEntries
         ]);
 
         /*

@@ -234,7 +234,7 @@ class EntryRepository extends AbstractRepository
     }
 
     /*
-     *  return all entries of one author
+     *  - return all entries of one author
      */
     public function getAllEntriesOfAuthor($author) : array
     {
@@ -244,7 +244,8 @@ class EntryRepository extends AbstractRepository
         $stmt = $this->pdo->prepare("
             SELECT * 
             FROM {$table}
-            WHERE author = :author
+            WHERE author 
+            LIKE :author
             ORDER BY dateofentry DESC 
         ");
         $stmt->bindParam(':author', $author);
