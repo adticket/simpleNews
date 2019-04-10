@@ -280,7 +280,27 @@ class PaginationService
             /*
              *  get links around current page
              */
-
+            if ($currentPage <= 3)
+            {
+                for ($x = 1; $x <= 5; $x++)
+                {
+                    $links[] = $this->getLinkWithParams($x, $x);
+                }
+            }
+            elseif ($currentPage >= $numberOfPages-2)
+            {
+                for ($x = ($numberOfPages-4); $x <= $numberOfPages; $x++)
+                {
+                    $links[] = $this->getLinkWithParams($x, $x);
+                }
+            }
+            else
+            {
+                for ($x = $currentPage-2; $x <= $currentPage+2; $x++)
+                {
+                    $links[] = $this->getLinkWithParams($x, $x);
+                }
+            }
 
             /*
              *  go to last page link
