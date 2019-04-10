@@ -254,7 +254,6 @@ class PaginationService
     {
         $links = [];
         $numberOfPages = 1;
-
         $currentPage = (int)($_GET['page'] ?? '1');
 
         if ($numberOfEntries > $this->entriesPerPage) {
@@ -268,118 +267,84 @@ class PaginationService
         {
             for($x = 1; $x <= $numberOfPages; $x++)
             {
-                $link = [];
-                $link[] = '<li class="page-item';
-
-                if ($x === $currentPage) {
-                    $link[] = ' active">';
-                } else {
-                    $link[] = '">';
-                }
-
-                $first = true;
-
-                $link[] = '<a class="page-link" href="?';
-
-                if(isset($_GET['page']))
-                {
-                    foreach($_GET as $key => $value)
-                    {
-                        if(!$first)
-                        {
-                            $link[] = '&';
-                        }
-                        else
-                        {
-                            $first = false;
-                        }
-                        if($key === 'page')
-                        {
-                            $value=$x;
-                        }
-                        $link[] = $key . '=' . $value;
-                    }
-                }
-                else
-                {
-                    foreach($_GET as $key => $value)
-                    {
-                        if(!$first)
-                        {
-                            $link[] = '&';
-                        }
-                        else
-                        {
-                            $first = false;
-                        }
-                        $link[] = $key . '=' . $value;
-                    }
-                    $link[] = '&page=' . $x;
-                }
-
-                $link[] = '">' . $x . '</a></li>';
-
-                $links[] = implode('', $link);
+                $links[] = $this->getLinkWithParams($x, $x);
             }
         }
         elseif($numberOfPages > 5)
         {
-            for($x = 1; $x <= $numberOfPages; $x++)
+            /*
+             *  go to first page link
+             */
+            $links[] = $this->getLinkWithParams(1, '&laquo;' );
+
+            /*
+             *  get links around current page
+             */
+
+
+            /*
+             *  go to last page link
+             */
+            $links[] = $this->getLinkWithParams($numberOfPages, '&raquo;');
+        }
+        return $links;
+    }
+
+    public function getLinkWithParams($page, $linkString) : string
+    {
+        $currentPage = (int)($_GET['page'] ?? '1');
+        $first = true;
+        $link = ['<li class="page-item'];
+
+        if($page === $currentPage && $page === $linkString)
+        {
+            $link[] = ' active">';
+        }
+        else
+        {
+            $link[] = '">';
+        }
+
+        $link[] = '<a class="page-link" href="?';
+
+        if(isset($_GET['page']))
+        {
+            foreach($_GET as $key => $value)
             {
-                $link = [];
-                $link[] = '<li class="page-item';
-
-                if ($x === $currentPage) {
-                    $link[] = ' active">';
-                } else {
-                    $link[] = '">';
-                }
-
-                $first = true;
-
-                $link[] = '<a class="page-link" href="?';
-
-                if(isset($_GET['page']))
+                if(!$first)
                 {
-                    foreach($_GET as $key => $value)
-                    {
-                        if(!$first)
-                        {
-                            $link[] = '&';
-                        }
-                        else
-                        {
-                            $first = false;
-                        }
-                        if($key === 'page')
-                        {
-                            $value=$x;
-                        }
-                        $link[] = $key . '=' . $value;
-                    }
+                    $link[] = '&';
                 }
                 else
                 {
-                    foreach($_GET as $key => $value)
-                    {
-                        if(!$first)
-                        {
-                            $link[] = '&';
-                        }
-                        else
-                        {
-                            $first = false;
-                        }
-                        $link[] = $key . '=' . $value;
-                    }
-                    $link[] = '&page=' . $x;
+                    $first = false;
                 }
-
-                $link[] = '">' . $x . '</a></li>';
-
-                $links[] = implode('', $link);
+                if($key === 'page')
+                {
+                    $value=$page;
+                }
+                $link[] = $key . '=' . $value;
             }
         }
-        return $links;
+        else
+        {
+            foreach($_GET as $key => $value)
+            {
+                if(!$first)
+                {
+                    $link[] = '&';
+                }
+                else
+                {
+                    $first = false;
+                }
+                $link[] = $key . '=' . $value;
+            }
+            $link[] = '&page=' . $page;
+        }
+
+        $link[] = '">' . $linkString . '</a></li>';
+
+        return implode('', $link);
     }
 }
