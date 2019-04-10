@@ -232,4 +232,25 @@ class EntryRepository extends AbstractRepository
 
         return $stmt->fetchAll();
     }
+
+    /*
+     *  return all entries of one author
+     */
+    public function getAllEntriesOfAuthor($author) : array
+    {
+        $model = $this->getModelName();
+        $table = $this->getTableName();
+
+        $stmt = $this->pdo->prepare("
+            SELECT * 
+            FROM {$table}
+            WHERE author = :author
+            ORDER BY dateofentry DESC 
+        ");
+        $stmt->bindParam(':author', $author);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, $model);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
 }
