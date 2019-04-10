@@ -47,14 +47,19 @@ class AdminController extends AbstractController
         }
 
         /*
-         * get pagination and entries
+         * get all entries
          */
-        $pagination = $this->paginationService->getPagination($_SESSION['login']);
+        $allEntries = $this->entryRepository->getAllEntriesOfAuthor($_SESSION['login']);
+
+        /*
+         *  get currently needed entries
+         */
+        $currentEntries = $this->paginationService->getCurrentEntries($allEntries);
 
         /*
          *  get all elements for pagination
          */
-        $paginationElements = $this->paginationService->getPaginationElements($pagination['numPages']);
+        $paginationElements = $this->paginationService->getPaginationBar(count($allEntries));
 
         /*
          *  render navigation, pagination and entries
@@ -62,21 +67,18 @@ class AdminController extends AbstractController
         $this->render('layout/header', [
             'navigation' => $this->loginService->getNavigation()
         ]);
-        if($pagination['numPages']>1)
-        {
-            $this->render('layout/pagination', [
-                'paginationElements' => $paginationElements
-            ]);
-        }
-        $this->render('User/userEntries', [
-            'entries' => $pagination['entries']
+
+        $this->render('layout/pagination', [
+            'paginationElements' => $paginationElements
         ]);
-        if($pagination['numPages']>1)
-        {
-            $this->render('layout/pagination', [
-                'paginationElements' => $paginationElements
-            ]);
-        }
+
+        $this->render('User/userEntries', [
+            'entries' => $currentEntries
+        ]);
+
+        $this->render('layout/pagination', [
+            'paginationElements' => $paginationElements
+        ]);
     }
 
     /*

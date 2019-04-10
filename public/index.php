@@ -61,6 +61,10 @@ $routes = [
     '/editEntry' => [
         'controller' => 'adminController',
         'method' => 'editEntry'
+    ],
+    '/search' => [
+        'controller' => 'entryController',
+        'method' => 'search'
     ]
 ];
 

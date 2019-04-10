@@ -201,4 +201,57 @@ class EntryRepository extends AbstractRepository
 
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
+
+    /*
+     *  - return all entries that contain the string parameter in title or content
+     */
+    public function searchEntries($string) : array
+    {
+        $model = $this->getModelName();
+        $table = $this->getTableName();
+        $query = "%" . $string . "%";
+
+        $stmt = $this->pdo->prepare("
+            SELECT *
+            FROM {$table}
+            WHERE blogcontent
+            LIKE :searchQuery
+            UNION
+            SELECT * 
+            FROM {$table}
+            WHERE blogtitle
+            LIKE :searchQuery
+            ORDER BY dateofentry DESC 
+        ");
+
+        $stmt->bindParam(':searchQuery', $query);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, $model);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
+
+    /*
+     *  - return all entries of one author
+     */
+    public function getAllEntriesOfAuthor($author) : array
+    {
+        $model = $this->getModelName();
+        $table = $this->getTableName();
+
+        $stmt = $this->pdo->prepare("
+            SELECT * 
+            FROM {$table}
+            WHERE author 
+            LIKE :author
+            ORDER BY dateofentry DESC 
+        ");
+        $stmt->bindParam(':author', $author);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, $model);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
 }
