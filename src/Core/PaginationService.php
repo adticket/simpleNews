@@ -119,6 +119,10 @@ class PaginationService
         {
             $link[] = ' active">';
         }
+        elseif($page === $currentPage && $page !== $linkString)
+        {
+            $link[] = ' disabled">';
+        }
         else
         {
             $link[] = '">';
